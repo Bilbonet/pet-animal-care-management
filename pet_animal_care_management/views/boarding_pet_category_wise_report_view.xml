@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Boarding Pet Category Wise Report Report -->
+    <data>
+        <report 
+            id="action_boarding_pet_category_wise_report"
+            model="report.abs_pet_animal_care_management.boarding_pet_report"
+            string="Boarding Pet Category Wise Report"
+            report_type="qweb-pdf"
+            name="abs_pet_animal_care_management.boarding_pet_report"
+            file="abs_pet_animal_care_management.boarding_pet_report"
+            />
+    </data>
+</odoo>

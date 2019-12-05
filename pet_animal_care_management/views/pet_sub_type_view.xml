@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Pet Sub Type Tree View--> 
+    <record id="open_pet_sub_type_tree_view" model="ir.ui.view">
+        <field name="name">pet.sub_type.tree</field>
+        <field name="model">pet.sub_type</field>
+        <field name="arch" type="xml">
+            <tree string="Pet Sub Type">
+                <field name='pet_type_id'/>
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Pet Sub Type Form View--> 
+    <record id="open_pet_sub_type_form_view" model="ir.ui.view">
+        <field name="name">pet.sub_type.form</field>
+        <field name="model">pet.sub_type</field>
+        <field name="arch" type="xml">
+            <form string="Pet Sub Type">
+                <sheet>  
+                    <group>
+                        <field name='pet_type_id' required='True' widget='selection'/>
+                        <field name='name' required='True'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for all view--> 
+    <record id="action_pet_sub_type" model="ir.actions.act_window">
+        <field name="name">Pet Sub Type</field>
+        <field name="res_model">pet.sub_type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="open_pet_sub_type_tree_view" />
+    </record>
+
+    <menuitem id="menu_pet_sub_type"
+    name="Pet Sub Type"
+    parent="menu_configuration"
+    action='action_pet_sub_type'
+    sequence="93"/>
+</odoo>

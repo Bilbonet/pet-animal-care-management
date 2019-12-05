@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Create Service Charges-->
+    <data>
+        <record id="service_charges" model="product.product">
+            <field name="name">Service Charges</field>
+            <field name="categ_id" ref="product.product_category_1"/>
+            <field name="type">service</field>
+            <field name="description">Charges</field>
+            <field name="default_code">PET_SERVICE_CHARGES</field>
+        </record>
+    </data>
+</odoo>
