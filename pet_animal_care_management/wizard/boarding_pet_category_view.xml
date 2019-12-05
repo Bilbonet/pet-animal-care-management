@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--customer boarding pet category wizard form-->
+    <record id="view_boarding_pet_category_wise" model="ir.ui.view">
+        <field name="name">boarding_pet.category.form</field>
+        <field name="model">boarding_pet.category</field>
+        <field name="arch" type="xml">
+            <form string ="Boarding Pet Category Wise Report">
+                <group> 
+                    <group> 
+                        <field name="start_date" required='True'/>
+                    </group>
+                    <group>  
+	                <field name="end_date" required='True'/>
+                    </group>
+                </group> 
+	    	<footer>
+	            <button string='Print' name="print_report" type='object' class='btn-primary'/>
+		    <button string='Cancel' class='btn-default' special="cancel"/>	
+	    	</footer>
+	    </form>		
+        </field>
+    </record>
+    <!--Action for wizard form -->
+    <record id="action_boarding_pet_wizard" model="ir.actions.act_window">
+        <field name="name">Boarding Pet Category Wise Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">boarding_pet.category</field>
+        <field name="view_type">tree</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_boarding_pet_category_wise"/>	
+    </record>
+</odoo>

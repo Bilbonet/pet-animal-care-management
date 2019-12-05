@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--customer invoice report -->
+    <data>
+        <report 
+            id="action_customer_invoice_report"
+            model="report.abs_pet_animal_care_management.customer_invoice_report"
+            string="Customer Invoice"
+            report_type="qweb-pdf"
+            name="abs_pet_animal_care_management.customer_invoice_report"
+            file="abs_pet_animal_care_management.customer_invoice_report"
+            />
+    </data>
+</odoo>

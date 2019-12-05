@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Inherit Employee Form View-->
+    <record id="inherited_view_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+	<field name="inherit_id" ref ="hr.view_employee_form"/>	
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="before">
+                <label for="is_veterinarian"/>
+                <div>
+                    <field name="is_veterinarian"/>
+                </div>
+            </xpath>
+            <notebook>
+                <page string='Pets' attrs="{'invisible': [('is_veterinarian', '=', False)]}">
+                    <field name='pet_ids' readonly='True'/>
+                </page>
+            </notebook> 
+        </field> 
+    </record>
+
+    <!-- Action for all view--> 
+    <record id="action_veterinarian_information" model="ir.actions.act_window">
+        <field name="name">Veterinarian</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem id="menu_veterinarian_information"
+    name="Veterinarian"
+    parent="menu_root_pet_animal_care_mangement"
+    action='action_veterinarian_information'
+    sequence="41"/>
+</odoo>
