@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Days Tree View--> 
+    <record id="open_pet_days_tree_view" model="ir.ui.view">
+        <field name="name">pet.days.tree</field>
+        <field name="model">pet.days</field>
+        <field name="arch" type="xml">
+            <tree string="Days">
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Days Form View--> 
+    <record id="open_pet_days_form_view" model="ir.ui.view">
+        <field name="name">pet.days.form</field>
+        <field name="model">pet.days</field>
+        <field name="arch" type="xml">
+            <form string="Pet Days">
+                <sheet>  
+                    <group>
+                        <field name='name' required='True'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for all view--> 
+    <record id="action_pet_days" model="ir.actions.act_window">
+        <field name="name">Days</field>
+        <field name="res_model">pet.days</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="open_pet_days_tree_view" />
+    </record>
+
+    <menuitem id="menu_pet_days"
+    name="Days"
+    parent="menu_configuration"
+    action='action_pet_days'
+    sequence="97"/>
+</odoo>

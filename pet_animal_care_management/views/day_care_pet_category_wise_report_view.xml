@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Day Care Pet Category Wise Report Report -->
+    <data>
+        <report 
+            id="action_day_care_pet_category_wise"
+            model="report.abs_pet_animal_care_management.day_care_category_report"
+            string="Day Care Pet Category Wise Report"
+            report_type="qweb-pdf"
+            name="abs_pet_animal_care_management.day_care_category_report"
+            file="abs_pet_animal_care_management.day_care_category_report"
+            />
+    </data>
+</odoo>

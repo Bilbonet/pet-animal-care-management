@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--day care pet template. --> 
+    <template id="day_care_category_report">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div>
+                        <p align='center'><br/><u><strong><span style="font-size: 18px;"></span>Day Care Pet Category Wise Report</strong></u></p> 
+                    </div>
+                    <div >
+                        <p align='left'><strong><span>From Date: </span></strong><span  t-field="docs.start_date"/></p> 
+                        <p align='left'><strong><span >To Date: </span></strong><span  t-field="docs.end_date"/></p> 
+                    </div><br/>
+                    <table class="table table-condensed" >
+                        <tbody>
+                            <tr>
+                                <td><strong><span>Category</span></strong></td> 
+                                <td><strong><span>Total</span></strong> </td>
+                            </tr>  
+                            <t t-set='category_list' t-value="[]"/>
+                                <t t-foreach="day_care_category_ids" t-as="category" >
+                                    <t t-if="category">
+                                        <t t-if="category.pet_type_id.id not in category_list">
+                                            <tr>
+                                                 <t t-set="test_variable" t-value="0" />    
+                                                 <t t-foreach="day_care_category_ids" t-as="category_id"> 
+                                                     <t t-if="category.pet_type_id.id == category_id.pet_type_id.id">
+                                                         <tr>
+                                                             <t t-set="test_variable" t-value="test_variable + 1"/>
+                                                         </tr>
+                                                     </t>
+                                                 </t>
+                                            </tr>
+                                            <td><t t-esc="category.pet_type_id.name"/></td>
+                                            <td><t t-esc="test_variable"/></td>
+                                        </t>
+                                    </t>
+                                    <t t-set="category_list" t-value="category_list+[category.pet_type_id.id]"/>
+                                </t>
+                        </tbody>         
+                    </table>
+                </div>
+            </t>
+        </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <!--Sequence number-->
+    <record id="pet_service_seq_number" model="ir.sequence">
+        <field name="name">Pet Service Number</field>
+        <field name="code">pet.service</field>
+        <field name="prefix">SER/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="implementation">no_gap</field>
+    </record>
+    <!--Pet Service Tree View--> 
+    <record id="open_pet_service_tree_view" model="ir.ui.view">
+        <field name="name">pet.service.tree</field>
+        <field name="model">pet.service</field>
+        <field name="arch" type="xml">
+            <tree string="Pet Service">
+                <field name='partner_id'/>
+                <field name='mobile'/>
+                <field name='start_date'/>
+                <field name='end_date'/>
+                <field name='state'/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Pet Service Form View--> 
+    <record id="open_pet_service_form_view" model="ir.ui.view">
+        <field name="name">pet.service.form</field>
+        <field name="model">pet.service</field>
+        <field name="arch" type="xml">
+            <form string="Pet Service">
+                <header>
+                    <button string='Create Invoice'
+                            name="create_invoice" 
+                            type="object" state="invoiced" 
+                            class='btn-primary' 
+                            attrs="{'invisible': [('state', 'in', ('draft','request','rejected','cancel','invoiced','done'))]}"
+                            groups='abs_pet_animal_care_management.group_pet_care_manager'/>
+                    <button string='Done' 
+                            name="action_done" 
+                            type='object' state="done" 
+                            class='btn-primary' 
+                            attrs="{'invisible': [('state', 'in', ('draft','approved','done','request','rejected','cancel'))]}"/>
+                    <button name="back_to_draft" 
+                            string="Reset To Draft" 
+                            type="object" 
+                            attrs="{'invisible': [('state', 'in', ('request','approved','draft','rejected','invoiced','done'))]}"/> 
+                    <button name="service_request" 
+                            string="Submit" type="object" 
+                            state="request"  
+                            class='oe_highlight' 
+                            attrs="{'invisible': [('state', 'in', ('request','approved','rejected','cancel','invoiced','done'))]}"/> 
+                    <button name="approve_request" 
+                            string="Approved" 
+                            type="object" 
+                            state="approved" 
+                            class='oe_highlight' 
+                            attrs="{'invisible': [('state', 'in',('draft','approved','cancel','rejected','invoiced','done'))]}"
+                            groups='abs_pet_animal_care_management.group_pet_care_manager'/>
+                    <button name="reject_request" 
+                            string="Rejected" 
+                            type="object" 
+                            state="rejected" 
+                            class='oe_highlight' 
+                            attrs="{'invisible': [('state', 'in', ('draft','approved','rejected','cancel','invoiced','done'))]}"
+                            groups='abs_pet_animal_care_management.group_pet_care_manager'/>
+                    <button name="cancel_request" 
+                            string="Discard" 
+                            type="object" 
+                            state="cancel" 
+                            class='oe_highlight' 
+                            attrs="{'invisible': [('state', 'in', ('approved','cancel','request','rejected','invoiced','done'))]}"
+                            groups='abs_pet_animal_care_management.group_pet_care_manager'/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,request,approved"/> 
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" 
+                         attrs="{'invisible': [('state', 'in', ('draft','approved','request','rejected','cancel'))]}">
+                        <button type="object" class="oe_stat_button" id="invoice_button" icon="fa-pencil-square-o" name="action_invoice">
+                            <div class="o_form_field o_stat_info">
+                                <field name="invoice_count"/>
+                                <span class="o_stat_text">Invoices</span>
+                            </div>
+                        </button>
+                    </div>
+                    <h1><field name='number'/></h1>
+                    <group>
+                        <group>
+                            <field name='partner_id' required='True'/>
+                            <field name='mobile' required='True'/>
+                            <field name='email' required='True'/>
+                        </group>
+                        <group>
+                            <field name='start_date' required='True'/>
+                            <field name='end_date' required='True'/>
+                        </group>
+                    </group>
+                    <separator string='Pet Services'/>
+                        <field name='pet_service_ids'>
+                            <tree editable='bottom'>
+                                <field name='pet_service_sequence_id' required='True'/>
+                                <field name='pet_id'/>
+                                <field name='pet_sub_type_id'/>
+                                <field name='service_ids' widget='many2many_tags' domain = "[('is_service','=',True)]" required = 'True'/>
+                                <field name='amount'/>
+                            </tree>
+                        </field>
+                    <group> 
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                            <label for="amount_total"/>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>  
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for all view--> 
+    <record id="action_pet_service" model="ir.actions.act_window">
+        <field name="name">Booking For Pet Service</field>
+        <field name="res_model">pet.service</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="open_pet_service_tree_view" />
+    </record>
+
+    <menuitem id="menu_pet_service"
+    name="Booking For Pet Service"
+    parent="child_menu_root_client_resources"
+    action='action_pet_service'
+    sequence="7"/>
+</odoo>
