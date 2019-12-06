@@ -1,0 +1,1202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* abs_pet_animal_care_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-06 18:20+0000\n"
+"PO-Revision-Date: 2019-12-06 18:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.boarding_pet_report
+msgid "<br/><u><strong><span style=\"font-size: 18px;\"/>Boarding Pet Category Wise Report</strong></u>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.day_care_category_report
+msgid "<br/><u><strong><span style=\"font-size: 18px;\"/>Day Care Pet Category Wise Report</strong></u>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.customer_invoice_report
+msgid "<br/><u><strong><span style=\"font-size: 18px;\">Customer Invoice</span></strong></u>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+msgid "<span class=\"o_stat_text\">Invoices</span>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_boarding_form_view
+msgid "<span>Day</span>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_boarding_form_view
+msgid "<span>Hours</span>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.customer_invoice_report
+msgid "<strong><span>Amount</span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.boarding_pet_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.day_care_category_report
+msgid "<strong><span>Category</span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.product_kanban_view
+msgid "<strong><span>Color: </span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.customer_invoice_report
+msgid "<strong><span>Customer</span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.boarding_pet_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.customer_invoice_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.day_care_category_report
+msgid "<strong><span>From Date: </span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.product_kanban_view
+msgid "<strong><span>Sex: </span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.boarding_pet_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.customer_invoice_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.day_care_category_report
+msgid "<strong><span>To Date: </span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.boarding_pet_report
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.day_care_category_report
+msgid "<strong><span>Total</span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.product_kanban_view
+msgid "<strong><span>Type: </span></strong>"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "Address"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__total_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__total_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__amount
+msgid "Amount"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Approved"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__birth_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__birth_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__birth_date
+msgid "Birth Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_boarding_agreement
+#: model:ir.model,name:abs_pet_animal_care_management.model_boarding_agreement
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__boarding_agreement_id
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_boarding_agreement
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_tree_view
+msgid "Boarding Agreement"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__boarding_pet_ids
+msgid "Boarding Pet"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_boarding_pet_category
+msgid "Boarding Pet Category"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_boarding_pet_wizard
+#: model:ir.actions.report,name:abs_pet_animal_care_management.action_boarding_pet_category_wise_report
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_boarding_pet_category_wise
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_boarding_pet_category_wise
+msgid "Boarding Pet Category Wise Report"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_boarding_pets
+msgid "Boarding Pets"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_service
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_service
+msgid "Booking For Pet Service"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_boarding_pet_category_wise
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_customer_invoice
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_day_care_invoice_show_wizard_action
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_day_care_pet_category
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_invoice_show_wizard_action
+msgid "Cancel"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__capacity
+msgid "Capacity"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,description:abs_pet_animal_care_management.charges_day_care
+#: model:product.product,description:abs_pet_animal_care_management.charges_product
+#: model:product.product,description:abs_pet_animal_care_management.service_charges
+#: model:product.template,description:abs_pet_animal_care_management.charges_day_care_product_template
+#: model:product.template,description:abs_pet_animal_care_management.charges_product_product_template
+#: model:product.template,description:abs_pet_animal_care_management.service_charges_product_template
+msgid "Charges"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__charges_type
+msgid "Charges Type"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__city
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "City"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.actions.act_window,help:abs_pet_animal_care_management.action_pet
+msgid "Click to add a new pet."
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_client_information
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__partner_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__partner_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__partner_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__partner_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__partner_id
+msgid "Client"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_client_information
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Client Information"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.child_menu_root_client_resources
+msgid "Client Resources"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__pet_color_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__pet_color_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__pet_color_id
+msgid "Color"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_contact_us
+msgid "Contact Us"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__country_id
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "Country"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_day_care_invoice_show_wizard_action
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_invoice_show_wizard_action
+msgid "Create"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.open_day_care_invoice_show_wizard_action
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.open_invoice_show_wizard_action
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+msgid "Create Invoice"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__create_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__create_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_customer_invoice_wizard
+#: model:ir.actions.report,name:abs_pet_animal_care_management.action_customer_invoice_report
+#: model:ir.model,name:abs_pet_animal_care_management.model_customer_invoice
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_customer_invoice
+msgid "Customer Invoice"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_customer_invoice
+msgid "Customer Penalty"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__date
+msgid "Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Date Of Birth"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,charges_type:0
+msgid "Day"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__day_care_id
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+msgid "Day Care"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,name:abs_pet_animal_care_management.charges_day_care
+#: model:product.template,name:abs_pet_animal_care_management.charges_day_care_product_template
+msgid "Day Care Charges"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__day_care_pet_ids
+msgid "Day Care Pet"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_day_care_pet_category
+msgid "Day Care Pet Category"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_day_care_pet_wizard
+#: model:ir.actions.report,name:abs_pet_animal_care_management.action_day_care_pet_category_wise
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_day_care_pet_category_wise
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_day_care_pet_category
+msgid "Day Care Pet Category Wise Report"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_day_care_pets
+msgid "Day Care Pets"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_day_care
+msgid "Day Care Reservation"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_day_care
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_tree_view
+msgid "Day Care Reservation From"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_days
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__total_days
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__total_days
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__total_days
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__total_days
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__day_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_days
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_days_tree_view
+msgid "Days"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Discard"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_boarding_pet_report__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_customer_invoice_report__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_day_care_category_report__display_name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+#: selection:vaccine.details,vaccine_state:0
+msgid "Done"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__drop_off_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__drop_off_date
+msgid "Drop Off Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__email
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__email
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__email
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__email
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__email
+msgid "Email"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+msgid "Emergency Contact Inforamtion"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:pet.information,gender:0
+#: selection:pet.information,sex:0
+#: selection:res.partner,gender:0
+msgid "Female"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_food
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__food_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__food_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_food
+msgid "Food"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Food Details"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__start_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__start_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__start_date
+msgid "From date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__gender
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__gender
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__gender
+msgid "Gender"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,charges_type:0
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__total_hours
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__total_hours
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__total_hours
+msgid "Hours"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_hr_employee
+msgid "Hr Employee"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__pet_boarding_id
+msgid "I'm making an request for"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_boarding_pet_report__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_customer_invoice_report__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_day_care_category_report__id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__id
+msgid "ID"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__invoice_count
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__invoice_count
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__invoice_count
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Invoiced"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: code:addons/abs_pet_animal_care_management/models/boarding_agreement.py:112
+#: code:addons/abs_pet_animal_care_management/models/pet_day_care.py:94
+#: code:addons/abs_pet_animal_care_management/models/pet_service.py:148
+#, python-format
+msgid "Invoices"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_product_product__is_food
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_product_template__is_food
+msgid "Is Food"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_product_product__is_service
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_product_template__is_service
+msgid "Is Service"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_boarding_pet_report____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_customer_invoice_report____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_report_abs_pet_animal_care_management_day_care_category_report____last_update
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__write_uid
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__write_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__location_id
+msgid "Location"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_location_information
+#: model:ir.model,name:abs_pet_animal_care_management.model_location_information
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_location_information
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_tree_view
+msgid "Location Information"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:pet.information,gender:0
+#: selection:pet.information,sex:0
+#: selection:res.partner,gender:0
+msgid "Male"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:res.groups,name:abs_pet_animal_care_management.group_pet_care_manager
+msgid "Manager"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__image_medium
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__mobile
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__mobile
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__mobile
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__mobile
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__pet_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__pet_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_color__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_days__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__pet_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_type__name
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_vaccine__name
+msgid "Name"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__partner_id
+msgid "Name Of Contact"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__number
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__number
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__number
+msgid "Number"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__per_day
+msgid "Per Day"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__per_day
+msgid "Per Day Amount"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_boarding__per_hour
+msgid "Per Hour"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__per_hour
+msgid "Per Hour Amount"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_hr_employee__pet_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__day_care_pet_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__pet_service_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__pet_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__pet_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_tree_view
+msgid "Pet"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.module.category,name:abs_pet_animal_care_management.module_pet_animal_care
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_root_pet_animal_care_mangement
+msgid "Pet Animal Care Management"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__pet_birth_date
+msgid "Pet Birth Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_boarding
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_boarding
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__pet_boarding_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__pet_boarding_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_boarding
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_boarding_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_boarding_tree_view
+msgid "Pet Boarding"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,name:abs_pet_animal_care_management.charges_product
+#: model:product.template,name:abs_pet_animal_care_management.charges_product_product_template
+msgid "Pet Boarding Charges"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.inherited_sale_view_form
+msgid "Pet Boarding History"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__boarding_id
+msgid "Pet Boarding Id"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_color
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_color
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_color
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_color_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_color_tree_view
+msgid "Pet Color"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_day_care
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__pet_day_care_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__pet_day_care_ids
+msgid "Pet Day Care"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.inherited_sale_view_form
+msgid "Pet Day Care History"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__day_care_id
+msgid "Pet Day Care Id"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_days
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_days_form_view
+msgid "Pet Days"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_food
+msgid "Pet Food"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__pet_sequence_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__pet_day_sequence_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__pet_service_sequence_id
+msgid "Pet ID"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__number
+msgid "Pet Id"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_information
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_food__pet_information_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__pet_information_id
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_information
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Pet Information"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Pet Name"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_service
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__pet_service_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_partner__pet_service_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_res_users__pet_service_ids
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_tree_view
+msgid "Pet Service"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.inherited_sale_view_form
+msgid "Pet Service History"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_services
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+msgid "Pet Services"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_sub_type
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_sub_type
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__pet_sub_type_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_sub_type
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_sub_type_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_sub_type_tree_view
+msgid "Pet Sub Type"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_type
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_type
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_sub_type__pet_type_id
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_type
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_type_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_type_tree_view
+msgid "Pet Type"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_pet_vaccine
+#: model:ir.model,name:abs_pet_animal_care_management.model_pet_vaccine
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_pet_vaccine
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_vaccine_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_vaccine_tree_view
+msgid "Pet Vaccine"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__boarding_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__day_care_ids
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.inherited_sale_view_form
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.inherited_view_employee_form
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "Pets"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+msgid "Pets Boarding"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__pick_up_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__pick_up_date
+msgid "Pick Up Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_boarding_pet_category_wise
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_customer_invoice
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.view_day_care_pet_category
+msgid "Print"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Rejected"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:vaccine.details,vaccine_state:0
+msgid "Remaining"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_report
+msgid "Report"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: selection:boarding.agreement,state:0
+#: selection:pet.day_care,state:0
+#: selection:pet.service,state:0
+msgid "Request"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_res_partner
+msgid "Res Partner"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+msgid "Reset To Draft"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_service
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_service
+msgid "Service"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,name:abs_pet_animal_care_management.service_charges
+#: model:product.template,name:abs_pet_animal_care_management.service_charges_product_template
+msgid "Service Charges"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__service_ids
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_services
+msgid "Services"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__sex
+msgid "Sex"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__image_small
+msgid "Small-sized image"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__state
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__state_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__state
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__state
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "State"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__street
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__street2
+msgid "Street"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "Street 2..."
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "Street..."
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__pet_sub_type_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__pet_sub_type_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__pet_sub_type_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_services__pet_sub_type_id
+msgid "Sub Type"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_boarding_agreement_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_day_care_form_view
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_service_form_view
+msgid "Submit"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pet_category__end_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_customer_invoice__end_date
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pet_category__end_date
+msgid "To date"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_agreement__total_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__main_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__main_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_day_care__total_amount
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_service__amount_total
+msgid "Total Amount"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_create_invoice__total_pets
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_create_invoice__total_pets
+msgid "Total Pet"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__total_pet
+msgid "Total Pets"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__pet_type_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__pet_type_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__pet_type_id
+msgid "Type"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,uom_name:abs_pet_animal_care_management.charges_day_care
+#: model:product.product,uom_name:abs_pet_animal_care_management.charges_product
+#: model:product.product,uom_name:abs_pet_animal_care_management.service_charges
+#: model:product.template,uom_name:abs_pet_animal_care_management.charges_day_care_product_template
+#: model:product.template,uom_name:abs_pet_animal_care_management.charges_product_product_template
+#: model:product.template,uom_name:abs_pet_animal_care_management.service_charges_product_template
+msgid "Unit(s)"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:res.groups,name:abs_pet_animal_care_management.group_pet_care_user
+msgid "User"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__vaccine_ids
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__vaccine_id
+msgid "Vaccine"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_vaccine_details
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_pet_form_view
+msgid "Vaccine Details"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_vaccine_details__vaccine_state
+msgid "Vaccine State"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.actions.act_window,name:abs_pet_animal_care_management.action_veterinarian_information
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_boarding_pets__veterinarian_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_day_care_pets__veterinarian_id
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_hr_employee__is_veterinarian
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_pet_information__veterinarian_id
+#: model:ir.ui.menu,name:abs_pet_animal_care_management.menu_veterinarian_information
+msgid "Veterinarian"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.open_location_information_form_view
+msgid "ZIP"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model.fields,field_description:abs_pet_animal_care_management.field_location_information__zip
+msgid "Zip"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_create_invoice
+msgid "create.invoice"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_day_care_create_invoice
+msgid "day_care_create.invoice"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:abs_pet_animal_care_management.product_kanban_view
+msgid "image"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:product.product,weight_uom_name:abs_pet_animal_care_management.charges_day_care
+#: model:product.product,weight_uom_name:abs_pet_animal_care_management.charges_product
+#: model:product.product,weight_uom_name:abs_pet_animal_care_management.service_charges
+#: model:product.template,weight_uom_name:abs_pet_animal_care_management.charges_day_care_product_template
+#: model:product.template,weight_uom_name:abs_pet_animal_care_management.charges_product_product_template
+#: model:product.template,weight_uom_name:abs_pet_animal_care_management.service_charges_product_template
+msgid "kg"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_report_abs_pet_animal_care_management_boarding_pet_report
+msgid "report.abs_pet_animal_care_management.boarding_pet_report"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_report_abs_pet_animal_care_management_customer_invoice_report
+msgid "report.abs_pet_animal_care_management.customer_invoice_report"
+msgstr ""
+
+#. module: abs_pet_animal_care_management
+#: model:ir.model,name:abs_pet_animal_care_management.model_report_abs_pet_animal_care_management_day_care_category_report
+msgid "report.abs_pet_animal_care_management.day_care_category_report"
+msgstr ""
+

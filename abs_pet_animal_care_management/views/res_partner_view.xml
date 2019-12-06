@@ -44,6 +44,7 @@
 
     <menuitem id="menu_root_pet_animal_care_mangement"
     name="Pet Animal Care Management"
+    web_icon="abs_pet_animal_care_management,static/description/icon.png"
     groups='group_pet_care_user,group_pet_care_manager'
     sequence="1"/>
 
