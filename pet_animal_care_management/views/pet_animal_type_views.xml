@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- ===============
+         PET ANIMAL TYPE
+    ================ -->
+    <!-- ==== VIEWS ==== -->
+    <record id="pet_type_tree_view" model="ir.ui.view">
+        <field name="name">pet.animal.type tree view</field>
+        <field name="model">pet.animal.type</field>
+        <field name="arch" type="xml">
+            <tree string="Pet Type">
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pet_type_form_view" model="ir.ui.view">
+        <field name="name">pet.animal.type form view</field>
+        <field name="model">pet.animal.type</field>
+        <field name="arch" type="xml">
+            <form string="Pet Animal Type">
+                <sheet>
+                    <group>
+                        <field name='name'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==== ACTIONS ==== -->
+    <record id="pet_type_action_from_menu" model="ir.actions.act_window">
+        <field name="name">Pet Animal Type</field>
+        <field name="res_model">pet.animal.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pet_type_tree_view" />
+    </record>
+
+    <!-- ==== MENUS ===== -->
+    <menuitem id="pacm_config_main_menu"
+              name="Configuration"
+              parent="pacm_root_menu"
+              groups="pet_animal_care_management.group_pacm_manager"
+              sequence="100"/>
+    <menuitem id="pet_animal_type_menu"
+              name="Pet Type"
+              parent="pacm_config_main_menu"
+              action="pet_type_action_from_menu"
+              sequence="2"/>
+
+    <!-- ===================
+         PET ANIMAL SUB-TYPE
+    ==================== -->
+    <!-- ==== VIEWS ==== -->
+    <record id="pet_sub_type_tree_view" model="ir.ui.view">
+        <field name="name">pet.animal.sub_type tree view</field>
+        <field name="model">pet.animal.sub_type</field>
+        <field name="arch" type="xml">
+            <tree string="Pet Sub Type">
+                <field name='pet_type_id'/>
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+    <record id="pet_sub_type_form_view" model="ir.ui.view">
+        <field name="name">pet.animal.sub_type form view</field>
+        <field name="model">pet.animal.sub_type</field>
+        <field name="arch" type="xml">
+            <form string="Pet Sub Type">
+                <sheet>
+                    <group>
+                        <field name='pet_type_id' widget='selection'/>
+                        <field name='name'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==== ACTIONS ==== -->
+    <record id="pet_sub_type_action_from_menu" model="ir.actions.act_window">
+        <field name="name">Pet Sub Type</field>
+        <field name="res_model">pet.animal.sub_type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pet_sub_type_tree_view" />
+    </record>
+
+    <!-- ==== MENUS ===== -->
+    <menuitem id="pet_animal_sub_type_menu"
+              name="Pet Sub Type"
+              parent="pacm_config_main_menu"
+              action="pet_sub_type_action_from_menu"
+              sequence="3"/>
+</odoo>

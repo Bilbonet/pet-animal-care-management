@@ -1,0 +1,107 @@
+# Copyright 2020Jesus Ramiro <jesus@bilbonet.net>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import api, fields, models
+from odoo import tools, _
+from odoo.exceptions import ValidationError
+
+
+class PetAnimal(models.Model):
+    _name = 'pet.animal'
+    _description = 'Pet Animal Information'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'name desc'
+
+    name = fields.Char(string='Name', index=True,
+        copy=False, help="Pet's name")
+    pet_code = fields.Char(string='Pet Chip/Code',
+        copy=False, index=True,
+        help='Individual code identification of the pet animal. '
+             'With dogs usually be the chip code.')
+    passport = fields.Char(string='Passport',
+        copy=False, index=True,
+        help="A pet passport is a document that officially records information "
+             "related to a specific animal.")
+    active = fields.Boolean(default=True,
+        help="If the active field is set to False, it will allow you to hide"
+             " the pet animal without removing it.")
+    pet_birth_date = fields.Date(string="Date Of Birth")
+    sex = fields.Selection([
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('unknow', 'Unknow')], stirng="Sex", copy=False)
+    sterilized = fields.Boolean(string="Sterilized")
+    image = fields.Binary(string="Big-sized image", attachment=True,
+        help="This field holds the image used as image for the pet animal, "
+             "limited to 1024x1024px.")
+    image_medium = fields.Binary(string='Medium-sized image', attachment=True,
+        help="Medium-sized image of the pet animal. It is automatically "
+             "resized as a 128x128px image, with aspect ratio preserved. "
+             "Use this field in form views or some kanban views.")
+    image_small = fields.Binary(string='Small-sized image', attachment=True,
+        help="Small-sized image of the pet animal. It is automatically "
+             "resized as a 64x64px image, with aspect ratio preserved. "
+             "Use this field anywhere a small image is required.")
+    pet_type_id = fields.Many2one('pet.animal.type',string='Type')
+    pet_sub_type_id = fields.Many2one('pet.animal.sub_type',strin='Sub Type')
+    veterinarian_id = fields.Many2one('hr.employee',
+        string='Veterinarian', track_visibility='onchange')
+    partner_id = fields.Many2one('res.partner',
+        string='Owner', track_visibility='onchange')
+    company_id = fields.Many2one('res.company',
+        string='Company',
+        default=lambda self: self.env['res.company']._company_default_get())
+    privacy_visibility = fields.Selection([
+        ('followers', 'Veterinarian and followers'),
+        ('employees', 'Visible by all employees'),],
+        string='Privacy', default='employees', required=True,
+        help="Holds visibility of the pet animal:\n"
+             "- Veterinarian and followers: Only followers, veterinarian and managers "
+             "can be able to see the pet animal\n"
+             "- Visible by all employees: Only employees "
+             "may see the pet animal\n")
+    note = fields.Text(string='Notes')
+    vet_appointment_ids = fields.One2many('veterinary.appointment',
+        'animal_id', 'Veterinarian Appointments')
+    vet_apmt_count = fields.Integer(compute='_compute_vet_appointment_count',
+        string="Amount Vet Appointment")
+
+    _sql_constraints = [
+        ('pet_animal_unique_code', 'UNIQUE (pet_code)',
+         _('The Pet Identification Code must be unique!')),
+    ]
+
+    def _compute_vet_appointment_count(self):
+        for pet in self:
+            pet.vet_apmt_count = self.env['veterinary.appointment'].search_count([
+                ('animal_id', '=', pet.id),
+                '|', ('active', '=', True), ('active', '=', False)
+            ])
+
+        # task_data = self.env['tsm.task'].read_group(
+        #     [('project_id', 'in', self.ids),
+        #     '|',('active', '=', True), ('active', '=', False)],
+        #     ['project_id'], ['project_id']
+        # )
+        #
+        # result = dict(
+        #     (data['project_id'][0], data['project_id_count'])
+        #     for data in task_data
+        # )
+        # for project in self:
+        #     project.task_count = result.get(project.id, 0)
+
+    @api.model
+    def create(self, vals):
+        if not vals.get('pet_code', False):
+            vals['pet_code'] = \
+                self.env['ir.sequence'].sudo().next_by_code('pet.animal')
+        tools.image_resize_images(vals)
+        return super(PetAnimal, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('pet_code', '/') == False:
+            raise ValidationError(_('You cannot leave blank Pet Animal Code.'))
+        tools.image_resize_images(vals)
+        return super(PetAnimal, self).write(vals)

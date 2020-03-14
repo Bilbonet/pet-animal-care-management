@@ -61,8 +61,6 @@
              'data/day_care_pet_charges_view.xml',
              'data/service_charges_view.xml',   
             ],
-    'price': 60.00, 
-    'currency': "EUR",
     'images': ['static/description/banner.png'],
     'installable': True,
     'application': True,

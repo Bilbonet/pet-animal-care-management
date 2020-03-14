@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- ==========
+         PET ANIMAL
+    =========== -->
+    <!-- ==== VIEWS ==== -->
+    <record id="pet_animal_kanban_view" model="ir.ui.view">
+        <field name="name">pet.animal kanban</field>
+        <field name="model">pet.animal</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="pet_code"/>
+                <field name='pet_type_id'/>
+                <field name='pet_sub_type_id'/>
+                <field name='sex'/>
+                <field name="image_small"/>
+                <field name="message_needaction_counter"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content oe_kanban_global_click">
+
+                            <div class="o_kanban_record_body">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('pet.animal', 'image_small', record.id.raw_value)" alt="Pet Animal"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li><small><field name="partner_id"/></small></li>
+                                        <li>
+                                            <strong class="text-primary text-uppercase"><field name="name"/></strong>
+                                            [<field name="pet_code"/>]
+                                        </li>
+                                    </ul>
+                                    <hr class="mt0 mb4"/>
+                                    <ul>
+                                        <li t-if="record.pet_type_id.raw_value">
+                                            <strong><span>Type: </span></strong>
+                                            <field name="pet_type_id"/>
+                                            <span t-if="record.pet_sub_type_id.raw_value">
+                                                 /
+                                                <field name="pet_sub_type_id"/>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span t-if="record.sex.raw_value" class="mr8"><strong>Sex: </strong><field name="sex"/></span>
+                                            <span t-if="record.pet_birth_date.raw_value"><strong>Birth Date: </strong><field name="pet_birth_date" widget="date"/></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                    <t t-if="record.message_needaction_counter.raw_value">
+                                        <span role="alert" class='oe_kanban_mail_new' title='Unread Messages'>
+                                            <i class='fa fa-comments' role="img" aria-label="Unread Messages"/>
+                                            <t t-raw="record.message_needaction_counter.raw_value"/>
+                                        </span>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_bottom_right" t-if="record.vet_apmt_count.raw_value">
+                                    <span class="oe_kanban_text_red">
+                                        <i class='fa fa-user-md' role="img" aria-label="Vet Appointments"/>
+                                        <field name="vet_apmt_count"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="pet_animal_tree_view" model="ir.ui.view">
+        <field name="name">pet.naimal tree</field>
+        <field name="model">pet.animal</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Pet Animal" decoration-muted="active==False">
+                <field name="pet_code"/>
+                <field name="name"/>
+                <field name='partner_id'/>
+                <field name='pet_type_id'/>
+                <field name='pet_sub_type_id'/>
+                <field name='pet_birth_date'/>
+                <field name='sex'/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pet_animal_form_view" model="ir.ui.view">
+        <field name="name">pet.animal form</field>
+        <field name="model">pet.animal</field>
+        <field name="arch" type="xml">
+            <form string="Pet Animal">
+                <sheet string="Pet Animal">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" required='True' placeholder="Its cute Name..."/>
+                        </h1>
+                        <h3>
+                            <field name="pet_code" placeholder="Chip/Code (leave blank will assign one...)"/>
+                        </h3>
+                    </div>
+                    <group string='Pet Information'>
+                        <group>
+                            <field name='pet_type_id' widget='selection'/>
+                            <field name='pet_sub_type_id' widget='selection'
+                                   attrs="{'invisible': [('pet_type_id','=', False)]}"
+                                   domain = "[('pet_type_id','=',pet_type_id)]"/>
+
+                            <field name='pet_birth_date'/>
+                            <label for="sex"/>
+                            <div class="row">
+                                <div class="col-4">
+                                    <field name='sex'/>
+                                </div>
+                                <div class="col-8">
+                                    <label style="font-weight:bold;" for="sterilized"/>
+                                    <field name='sterilized'/>
+                                </div>
+                            </div>
+                            <field name='passport'/>
+                            <field name='note'/>
+                        </group>
+                        <group>
+                            <field name='partner_id' required='True' options="{'no_create': True}"/>
+                            <field name='veterinarian_id'  widget='selection'
+                                   domain = "[('veterinarian','=',True)]"/>
+                            <field name="privacy_visibility" widget="radio"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Clinic History">
+                            <field name="vet_appointment_ids">
+                                <tree default_order="date_appointment" create="false" delete="false" editable="false">
+                                    <field name="name"/>
+                                    <field name="date_appointment" readonly="1"/>
+                                    <field name="history" readonly="1"/>
+                                    <field name="diagnostic" style="color:#A85A5A;" readonly="1"/>
+                                    <field name="treatment" style="color:#248D90;" readonly="1"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="pet_animal_filter_view" model="ir.ui.view">
+        <field name="name">pet.animal filter</field>
+        <field name="model">pet.animal</field>
+        <field name="arch" type="xml">
+            <search string="Search Pet">
+                <field name="name"/>
+                <field name="pet_code"/>
+                <field name="partner_id" string="Owner" filter_domain="[('partner_id', 'child_of', self)]"/>
+                <filter string="My Pets" name="my_pets" domain="[('veterinarian_id.user_id','=',uid)]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Veterinarian" name="vet" context="{'group_by':'veterinarian_id'}"/>
+                    <filter string="Sex" name="sex" context="{'group_by':'sex'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- ==== ACTIONS ==== -->
+    <record id="pet_animal_action_from_menu" model="ir.actions.act_window">
+        <field name="name">Pet Animal</field>
+        <field name="res_model">pet.animal</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="pet_animal_kanban_view" />
+        <field name="search_view_id" ref="pet_animal_filter_view"/>
+        <field name="context">{'search_default_my_pets': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new pet animal
+            </p>
+            <p>
+                You can create a new pet animal.
+            </p>
+        </field>
+    </record>
+    <!-- ==== MENUS ===== -->
+    <menuitem id="pacm_root_menu"
+              name="Pet Animal Care Management"
+              web_icon="pet_animal_care_management,static/description/icon.png"
+              groups='pet_animal_care_management.group_pacm_manager,pet_animal_care_management.group_pacm_user'
+              sequence="1"/>
+    <menuitem id="pet_animal_main_menu"
+              name="Pet Animal Information"
+              parent="pacm_root_menu"
+              action="pet_animal_action_from_menu"
+              sequence="2"/>
+</odoo>
