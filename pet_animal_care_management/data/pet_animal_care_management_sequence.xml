@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <!-- Pet Animal Code Number Sequence -->
+    <record id="pet_animal_seq_number" model="ir.sequence">
+        <field name="name">Pet Animal Code Number</field>
+        <field name="code">pet.animal</field>
+        <field name="prefix">PET%(y)s</field>
+        <field name="padding">4</field>
+        <field name="implementation">no_gap</field>
+    </record>
+
+
+    <!-- Veterinary Appointment Code Number Sequence -->
+    <record id="veterinary_appointment_seq_number" model="ir.sequence">
+        <field name="name">Veterinary Appointment Code Number</field>
+        <field name="code">veterinary.appointment</field>
+        <field name="prefix">VET%(y)s</field>
+        <field name="padding">4</field>
+        <field name="implementation">no_gap</field>
+    </record>
+</odoo>

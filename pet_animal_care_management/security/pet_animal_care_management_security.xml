@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- User Option: Application Permissions -->
+    <record id="module_pacm" model="ir.module.category">
+        <field name="name">Pet Animal Care Management</field>
+        <field name="description">Pet Animal Care Management helps you manage your pet's cares</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <!-- Security Groups -->
+    <record id="group_pacm_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="pet_animal_care_management.module_pacm"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_pacm_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="pet_animal_care_management.module_pacm"/>
+        <field name="implied_ids" eval="[(4, ref('group_pacm_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <data noupdate="1">
+        <!-- ================ -->
+        <!-- pet.animal Rules -->
+        <!-- ================ -->
+        <!-- Group Managers: can do all -->
+        <record id="pet_animal_manager_rule" model="ir.rule">
+            <field name="name">Pet Animal: Managers do all</field>
+            <field name="model_id" ref="model_pet_animal"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('pet_animal_care_management.group_pacm_manager'))]"/>
+        </record>
+        <!-- Group Users:
+                employees: Visible all employees
+                followers: Visible only for veterinarian or followers. -->
+        <record id="pet_animal_followers_rule" model="ir.rule">
+            <field name="name">Pet Animal: Veterinarian or Followers</field>
+            <field name="model_id" ref="model_pet_animal"/>
+            <field name="domain_force">['|','|',
+                ('privacy_visibility', '!=', 'followers'),
+                ('veterinarian_id.user_id.id','=',user.id),
+                ('message_partner_ids', 'in', [user.partner_id.id])]
+            </field>
+            <field name="groups" eval="[(4, ref('pet_animal_care_management.group_pacm_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ============================ -->
+        <!-- veterinary.appointment Rules -->
+        <!-- ============================ -->
+        <!-- Group Managers: can do all -->
+        <record id="veterinary_appointment_manager_rule" model="ir.rule">
+            <field name="name">Veterinary Appointment: Managers do all</field>
+            <field name="model_id" ref="model_veterinary_appointment"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('pet_animal_care_management.group_pacm_manager'))]"/>
+        </record>
+        <!-- Group Users:
+                employees: Visible all employees
+                followers: Visible only for veterinarian or followers. -->
+        <record id="veterinary_appointment_followers_rule" model="ir.rule">
+            <field name="name">Veterinary Appointment: Veterinarian or Followers</field>
+            <field name="model_id" ref="model_veterinary_appointment"/>
+            <field name="domain_force">['|','|',
+                ('privacy_visibility', '!=', 'followers'),
+                ('veterinarian_id.user_id.id','=',user.id),
+                ('message_partner_ids', 'in', [user.partner_id.id])]
+            </field>
+            <field name="groups" eval="[(4, ref('pet_animal_care_management.group_pacm_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+    </data>
+
+</odoo>
