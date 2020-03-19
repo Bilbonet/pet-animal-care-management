@@ -2,8 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-from odoo import tools, _
-from odoo.exceptions import ValidationError
 
 
 class VeterinaryAppointment(models.Model):
@@ -25,10 +23,10 @@ class VeterinaryAppointment(models.Model):
         help="If the active field is set to False, it will allow you to hide"
         " the veterinary appointment without removing it.")
     state = fields.Selection(
-        [('draft','Draft'),
-        ('confirm','Confirm'),
-        ('cancel','Cancel')]
-        , string='Status', index=True, readonly=True, default='draft',
+        [('draft','Pending'),
+        ('done','Done'),
+        ('cancel','Cancel')],
+        string='Status', required=True, index=True, default='draft',
         track_visibility='onchange', copy=False)
     animal_id = fields.Many2one('pet.animal',
         string='Pet Animal', required=True, track_visibility='onchange')

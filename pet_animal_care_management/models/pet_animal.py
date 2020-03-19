@@ -78,18 +78,6 @@ class PetAnimal(models.Model):
                 '|', ('active', '=', True), ('active', '=', False)
             ])
 
-        # task_data = self.env['tsm.task'].read_group(
-        #     [('project_id', 'in', self.ids),
-        #     '|',('active', '=', True), ('active', '=', False)],
-        #     ['project_id'], ['project_id']
-        # )
-        #
-        # result = dict(
-        #     (data['project_id'][0], data['project_id_count'])
-        #     for data in task_data
-        # )
-        # for project in self:
-        #     project.task_count = result.get(project.id, 0)
 
     @api.model
     def create(self, vals):
