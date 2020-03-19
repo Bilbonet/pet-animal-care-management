@@ -21,5 +21,5 @@ class PetAnimalSubType(models.Model):
     _description = "Pet Animal Sub Type"
 
     name = fields.Char(String='Name', required=True)
-    pet_type_id = fields.Many2one('pet.animal.type',strin='Pet Type', required=True)
+    pet_type_id = fields.Many2one('pet.animal.type', strin='Pet Type', required=True)
 
