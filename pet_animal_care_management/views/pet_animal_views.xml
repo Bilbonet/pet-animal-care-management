@@ -147,16 +147,16 @@
                     </group>
                     <notebook>
                         <page string="Clinic History">
-                            <field name="vet_appointment_ids">
-                                <tree default_order="date_appointment" create="false" delete="false" editable="false">
+                            <field name="vet_appointment_ids"
+                                   context="{'form_view_ref': 'pet_animal_care_management.vet_appointment_form_from_pet_view'}">
+                                <tree default_order="date_appointment" create="false" delete="false">
                                     <field name="name"/>
-                                    <field name="date_appointment" readonly="1"/>
-                                    <field name="history" readonly="1"/>
-                                    <field name="diagnostic" style="color:#A85A5A;" readonly="1"/>
-                                    <field name="treatment" style="color:#248D90;" readonly="1"/>
+                                    <field name="date_appointment"/>
+                                    <field name="history"/>
+                                    <field name="diagnostic" style="color:#A85A5A;"/>
+                                    <field name="treatment" style="color:#248D90;"/>
                                 </tree>
                             </field>
-
                         </page>
                     </notebook>
                 </sheet>
@@ -216,4 +216,36 @@
               parent="pacm_root_menu"
               action="pet_animal_action_from_menu"
               sequence="2"/>
+
+    <!-- ====================================
+         VETERINARY APPOINTMENT FROM PET FORM
+    ===================================== -->
+    <record id="vet_appointment_form_from_pet_view" model="ir.ui.view">
+        <field name="name">veterinary.appointment form</field>
+        <field name="model">veterinary.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Vet Appointment">
+                <sheet string="Vet Appointment">
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group string='Clinic History'>
+                            <field name='history'/>
+                            <field name='diagnostic' style="color:#A85A5A;"/>
+                            <field name='treatment' style="color:#248D90;"/>
+                        </group>
+                        <group string='Appointment Data'>
+                            <field name='date_appointment' readonly="1"/>
+                            <field name='veterinarian_id' readonly="1"/>
+                            <field name="privacy_visibility" widget="radio"/>
+                            <group string='Weight'>
+                                <label for="animal_weight" string="Kgs"/>
+                                <field name='animal_weight' nolabel="1"/>
+                            </group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 </odoo>

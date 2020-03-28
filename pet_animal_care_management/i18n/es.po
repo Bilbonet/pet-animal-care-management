@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-19 18:02+0000\n"
-"PO-Revision-Date: 2020-03-19 18:02+0000\n"
+"POT-Creation-Date: 2020-03-28 19:30+0000\n"
+"PO-Revision-Date: 2020-03-28 19:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,9 +80,10 @@ msgid "Animal Weight"
 msgstr "Peso Animal"
 
 #. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Appointment Data"
-msgstr "Fecha Cita"
+msgstr "Datos Cita"
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
@@ -114,6 +115,7 @@ msgstr "Chip/Code (en blanco asignará uno...)"
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__history
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_form_view
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Clinic History"
 msgstr "Anamnesis"
@@ -259,7 +261,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread
@@ -311,6 +313,7 @@ msgid "Its cute Name..."
 msgstr "Su lindo nombre..."
 
 #. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Kgs"
 msgstr ""
@@ -321,7 +324,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment____last_update
 msgid "Last Modified on"
-msgstr "Modificado por última vez el"
+msgstr "Última modificación en"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__write_uid
@@ -329,7 +332,7 @@ msgstr "Modificado por última vez el"
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__write_uid
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__write_date
@@ -657,7 +660,7 @@ msgstr "Desconocido"
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_unread
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "Unread Messages"
-msgstr "Mensajes por leer"
+msgstr "Mensajes sin leer"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_unread_counter
@@ -673,6 +676,7 @@ msgstr "Usuario"
 #. module: pet_animal_care_management
 #: model:ir.ui.menu,name:pet_animal_care_management.vet_appointment_main_menu
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_tree_view
 msgid "Vet Appointment"
@@ -714,6 +718,7 @@ msgid "Visible by all employees"
 msgstr "Visible empleados"
 
 #. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Weight"
 msgstr "Peso"
