@@ -22,6 +22,9 @@ class VeterinaryAppointment(models.Model):
     active = fields.Boolean(default=True, copy=False,
         help="If the active field is set to False, it will allow you to hide"
         " the veterinary appointment without removing it.")
+    company_id = fields.Many2one('res.company',
+        string='Company',
+        default=lambda self: self.env['res.company']._company_default_get())
     state = fields.Selection(
         [('draft','Pending'),
         ('done','Done'),
@@ -30,12 +33,11 @@ class VeterinaryAppointment(models.Model):
         track_visibility='onchange', copy=False)
     animal_id = fields.Many2one('pet.animal',
         string='Pet Animal', required=True, track_visibility='onchange')
+    partner_id = fields.Many2one(related="animal_id.partner_id",
+        string='Owner')
     veterinarian_id = fields.Many2one('hr.employee',
         string='Veterinarian', default=_default_veterinarian_get,
         required=True, track_visibility='onchange')
-    company_id = fields.Many2one('res.company',
-        string='Company',
-        default=lambda self: self.env['res.company']._company_default_get())
     date_appointment = fields.Datetime(string='Date of Appointment',
         track_visibility='onchange', copy=False)
     history = fields.Text(string="Clinic History")

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<odoo>
+    <report
+        id="vet_appintment_report_action"
+        string="Print Vet Appointment"
+        model="veterinary.appointment"
+        report_type="qweb-pdf"
+        file="sale.report_saleorder"
+        name="pet_animal_care_management.vet_appintment_report_document"
+        print_report_name="'('+object.name+')_'+object.name.replace(' ', '-')"/>
+
+
+    <template id="vet_appintment_report_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout" t-lang="doc.partner_id.lang">
+                    <div class="page">
+                        <div class="row" name="head_report">
+                            <div class="col-3">
+                                <h5 t-field="doc.animal_id.name"/>
+                                <img t-if="doc.animal_id.image_medium" t-att-src="image_data_uri(doc.animal_id.image_medium)" alt="Pet Image" style="max-height: 128px;"/>
+                            </div>
+                            <div class="col-4">
+                                <h6>Pet Data</h6>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <small>Species: </small>
+                                        <span t-field="doc.animal_id.pet_type_id"/>
+                                        <span t-if="doc.animal_id.pet_sub_type_id">
+                                            (<span t-field="doc.animal_id.pet_sub_type_id"/>)
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <small>Sex: </small><span t-field="doc.animal_id.sex"/>
+                                    </li>
+                                    <li><small>Chip/Code: </small><span t-field="doc.animal_id.pet_code"/></li>
+                                    <li><small>Birth Date: </small><span t-field="doc.animal_id.pet_birth_date"/></li>
+                                </ul>
+                            </div>
+                            <div class="col-5">
+                                <h6>Owner Data</h6>
+                                <ul class="list-unstyled">
+                                    <li><small>Name: </small><span t-field="doc.partner_id"/></li>
+                                    <li><small>Phone: </small><span t-field="doc.partner_id.phone"/></li>
+                                    <li><small>Email: </small><span t-field="doc.partner_id.email"/></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row mt32 mb16" name="body_report">
+                            <div class="col-4">
+                                <h4 t-field="doc.date_appointment"/>
+                            </div>
+                            <div class="col-8">
+                                <h5 t-field="doc.veterinarian_id"/>
+                            </div>
+                        </div>
+                        <div>
+                            <p><strong>History: </strong><span t-field="doc.history"/></p>
+                            <p t-if="doc.diagnostic" style="color:#A85A5A;"><strong>Diagnostic: </strong><span t-field="doc.diagnostic"/></p>
+                            <p t-if="doc.treatment" style="color:#248D90;"><strong>Treatment: </strong><span t-field="doc.treatment"/></p>
+                         </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
