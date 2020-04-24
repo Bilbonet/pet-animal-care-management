@@ -14,6 +14,7 @@
                 <field name="date_appointment"/>
                 <field name='animal_id'/>
                 <field name='veterinarian_id'/>
+                <field name='partner_id'/>
                 <field name='state'/>
                 <field name="active" invisible="1"/>
             </tree>
@@ -42,6 +43,9 @@
                         </div>
                         <div class="col-auto mw-100 mb-10">
                             <h1><field name="animal_id" placeholder="Pet Animal..."/></h1>
+                        </div>
+                        <div class="col-12">
+                            <h6><field name="partner_id"/></h6>
                         </div>
                     </div>
                     <group>

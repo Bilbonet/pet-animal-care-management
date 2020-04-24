@@ -22,6 +22,7 @@
         'views/pet_animal_type_views.xml',
         'views/hr_employee_view.xml',
         'views/veterinary_appointment_view.xml',
+        'report/vet_appointment_report.xml',
     ],
     'installable': True,
     'application': True,
