@@ -6,14 +6,59 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 11:02+0000\n"
-"PO-Revision-Date: 2020-04-24 11:02+0000\n"
+"POT-Creation-Date: 2020-05-01 18:23+0000\n"
+"PO-Revision-Date: 2020-05-01 18:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: pet_animal_care_management
+#: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_template
+msgid "\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hello ${object.partner_id.name or ''},</p>\n"
+"    <p>We inform you about the following Veterinary Appointment: </p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz='UTC', format='%d/%m/%Y') or ''}</strong><br>\n"
+"       &nbsp;&nbsp;Your Veterinarian: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for trusting in  ${object.company_id.name or 'us'}!</p>\n"
+"    % if object.veterinarian_id.user_id.signature:\n"
+"       ${object.veterinarian_id.user_id.signature | safe}\n"
+"    % else\n"
+"        <div style=\"padding:0px;margin:auto;\">\n"
+"            <table cellspacing=\"0\" cellpadding=\"0\">\n"
+"                <tbody>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
+"                            <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </tbody>\n"
+"            </table>\n"
+"        </div>\n"
+"    % endif\n"
+"    <br/>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,report_name:pet_animal_care_management.vet_appointment_email_template
+msgid "${'('+object.name+')_'+(object.animal_id.name)}"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
+msgid "${object.company_id.name} Vet Appointment (${object.name or 'n/a'})"
+msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
@@ -357,6 +402,7 @@ msgid "Its cute Name..."
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Kgs"
@@ -616,7 +662,7 @@ msgid "Planned"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.actions.report,name:pet_animal_care_management.vet_appintment_report_action
+#: model:ir.actions.report,name:pet_animal_care_management.vet_appointment_report_action
 msgid "Print Vet Appointment"
 msgstr ""
 
@@ -640,6 +686,11 @@ msgstr ""
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
 msgid "Search Vet Appointment"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
+msgid "Send by Email"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -783,6 +834,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Weight"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Weight:"
 msgstr ""
 
 #. module: pet_animal_care_management

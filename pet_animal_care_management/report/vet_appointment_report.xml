@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
     <report
-        id="vet_appintment_report_action"
+        id="vet_appointment_report_action"
         string="Print Vet Appointment"
         model="veterinary.appointment"
         report_type="qweb-pdf"
@@ -50,9 +50,10 @@
                         <div class="row mt32 mb16" name="body_report">
                             <div class="col-4">
                                 <h4 t-field="doc.date_appointment"/>
+                                <span t-if="doc.animal_weight">Weight: <b><span t-field="doc.animal_weight"/> Kgs</b></span>
                             </div>
                             <div class="col-8">
-                                <h5 t-field="doc.veterinarian_id"/>
+                                <h4 t-field="doc.veterinarian_id"/>
                             </div>
                         </div>
                         <div>

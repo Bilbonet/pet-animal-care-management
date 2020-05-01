@@ -43,7 +43,7 @@ class VeterinaryAppointment(models.Model):
     history = fields.Text(string="Clinic History")
     diagnostic = fields.Text(string="Diagnostic")
     treatment = fields.Text(string="Treatment")
-    animal_weight = fields.Integer(string='Animal Weight')
+    animal_weight = fields.Float(string='Animal Weight')
     privacy_visibility = fields.Selection([
         ('followers', 'Veterinarian and followers'),
         ('employees', 'Visible by all employees'),],
@@ -66,3 +66,46 @@ class VeterinaryAppointment(models.Model):
 
         va = super(VeterinaryAppointment, self.with_context(context)).create(vals)
         return va
+
+    @api.multi
+    def action_vet_appointment_send(self):
+        '''
+        This function opens a window to compose an email,
+        with the vet appointment template message loaded by default
+        '''
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data.get_object_reference(
+                'pet_animal_care_management', 'vet_appointment_email_template')[1]
+        except ValueError:
+            template_id = False
+        try:
+            compose_form_id = ir_model_data.get_object_reference(
+                'mail', 'email_compose_message_wizard_form')[1]
+        except ValueError:
+            compose_form_id = False
+        lang = self.env.context.get('lang')
+        template = template_id and self.env['mail.template'].browse(template_id)
+        if template and template.lang:
+            lang = template._render_template(
+                template.lang, 'veterinary.appointment', self.ids[0])
+        ctx = {
+            'default_model': 'veterinary.appointment',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'model_description': self.with_context(lang=lang).name,
+            'force_email': True
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
