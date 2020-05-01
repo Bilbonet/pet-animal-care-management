@@ -27,6 +27,8 @@
         <field name="arch" type="xml">
             <form string="Vet Appointment">
                 <header>
+                    <button name="action_vet_appointment_send" type="object"
+                            string=" Send by Email" class="oe_highlight" icon="fa-envelope"/>
                     <field name="state" widget="statusbar" clickable="True"/>
                 </header>
                 <sheet string="Vet Appointment">

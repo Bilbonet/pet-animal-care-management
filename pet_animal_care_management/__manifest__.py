@@ -23,6 +23,7 @@
         'views/hr_employee_view.xml',
         'views/veterinary_appointment_view.xml',
         'report/vet_appointment_report.xml',
+        'data/vet_appointment_mail_template.xml',
     ],
     'installable': True,
     'application': True,
