@@ -2,11 +2,11 @@
 <odoo>
 
     <record id="vet_appointment_email_template" model="mail.template">
-        <field name="name">Vet Appointment - Send by Email</field>
-        <field name="email_from">${(object.veterinarian_id.work_email and '%s &lt;%s&gt;' % (object.veterinarian_id.name, object.veterinarian_id.work_email) or '')|safe}</field>
-        <field name="subject">${object.company_id.name} Vet Appointment (${object.name or 'n/a'})</field>
-        <field name="email_to">${(object.partner_id.email or '')|safe}</field>
+        <field name="name">Vet Appointment - Report</field>
         <field name="model_id" ref="pet_animal_care_management.model_veterinary_appointment"/>
+        <field name="subject">${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})</field>
+        <field name="email_from">${(object.veterinarian_id.work_email and '%s &lt;%s&gt;' % (object.veterinarian_id.name, object.veterinarian_id.work_email) or '')|safe}</field>
+        <field name="email_to">${(object.partner_id.email or '')|safe}</field>
         <field name="auto_delete" eval="True"/>
         <field name="report_template" ref="pet_animal_care_management.vet_appointment_report_action"/>
         <field name="report_name">${'('+object.name+')_'+(object.animal_id.name)}</field>
@@ -18,7 +18,7 @@
 
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
        &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />
-       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz='UTC', format='%d/%m/%Y') or ''}</strong><br>
+       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>
        &nbsp;&nbsp;Your Veterinarian: <a href="mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}"><strong>${object.veterinarian_id.name}</strong></a>
     </p>
     <br/>
@@ -42,6 +42,84 @@
     <br/>
 </div>
         ]]></field>
+    </record>
+
+
+    <record id="vet_appointment_email_reminder" model="mail.template">
+        <field name="name">Vet Appointment: Reminder</field>
+        <field name="model_id" ref="pet_animal_care_management.model_veterinary_appointment"/>
+        <field name="subject">${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})</field>
+        <field name="email_from">${(object.veterinarian_id.work_email and '%s &lt;%s&gt;' % (object.veterinarian_id.name, object.veterinarian_id.work_email) or '')|safe}</field>
+        <field name="email_to">${(object.partner_id.email or '')|safe}</field>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="body_html" type="html">
+
+<div>
+    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}
+    % set date = object.date_appointment
+    <p>
+        Hello ${object.partner_id.name or ''},<br/><br/>
+        This is a reminder for the below veterinary appointment :
+    </p>
+    <table border="0" cellpadding="0" cellspacing="0"><tr>
+        <td width="130px;">
+            <div style="border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;">
+                ${format_tz(date, tz=object.partner_id.tz, format='%A') or ''}
+            </div>
+            <div style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+                ${format_tz(date, tz=object.partner_id.tz, format='%d') or ''}
+            </div>
+            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>
+                ${format_tz(date, tz=object.partner_id.tz, format='%B') or ''}
+                ${format_tz(date, tz=object.partner_id.tz, format='%Y') or ''}
+            </div>
+            <div style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 40px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;">
+                ${format_tz(date, tz=object.partner_id.tz, format='%H:%M') or ''}
+            </div>
+        </td>
+        <td width="20px;"/>
+        <td style="padding-top: 5px;">
+            <p><strong>Details of the vet appointment</strong></p>
+            <ul>
+                % if object.history:
+                    <li>History: ${object.history}</li>
+                % endif
+                % if object.diagnostic:
+                    <li>Diagnostic: ${object.diagnostic}</li>
+                % endif
+                % if object.treatment:
+                    <li>Treatment: ${object.treatment}</li>
+                % endif
+                % if object.veterinarian_id:
+                <li>Veterinarian: <strong>${object.veterinarian_id.name}</strong>
+                        <ul>
+                            <li>Phone: ${object.veterinarian_id.work_phone or ''}</li>
+                            <li>Email: <a href="mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}">${object.veterinarian_id.work_email}</a></li>
+                        </ul>
+                    </li>
+                % endif
+            </ul>
+        </td>
+    </tr></table>
+    <br/>
+    Thank you,
+    <br/>
+    <div style="padding:0px;margin:auto;">
+        <table cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td style="padding:10px 10px 10px 0px;font-size: 12px">
+                        <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 100px;" alt="${object.company_id.name}"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        </field>
+        <field name="auto_delete" eval="True"/>
+        <field name="user_signature" eval="False"/>
     </record>
 
 </odoo>
