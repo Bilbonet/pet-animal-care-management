@@ -11,9 +11,12 @@ class PetAnimal(models.Model):
     _description = 'Pet Animal Information'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'name desc'
+    _rec_name = 'complete_name'
 
     name = fields.Char(string='Name', index=True,
         copy=False, help="Pet's name")
+    complete_name = fields.Char(string="Full Name",
+        compute='_compute_complete_name', store=True)
     pet_code = fields.Char(string='Pet Chip/Code',
         copy=False, index=True,
         help='Individual code identification of the pet animal. '
@@ -70,6 +73,15 @@ class PetAnimal(models.Model):
         ('pet_animal_unique_code', 'UNIQUE (pet_code)',
          _('The Pet Identification Code must be unique!')),
     ]
+
+    @api.one
+    @api.depends('name', 'partner_id')
+    def _compute_complete_name(self):
+        """ Forms complete name of location from parent location to child location. """
+        if self.partner_id.name:
+            self.complete_name = '%s (%s)' % (self.name, self.partner_id.name)
+        else:
+            self.complete_name = self.name
 
     def _compute_vet_appointment_count(self):
         for pet in self:
