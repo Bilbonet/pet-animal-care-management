@@ -9,7 +9,10 @@
         <field name="model">veterinary.appointment</field>
         <field name="priority">2</field>
         <field name="arch" type="xml">
-            <tree string="Vet Appointment" decoration-muted="active==False">
+            <tree string="Vet Appointment" decoration-muted="active==False"
+                    decoration-bf="date_appointment == False and state == 'draft'"
+                    decoration-danger="date_appointment and (date_appointment&lt;current_date) and state == 'draft'"
+                    decoration-success="date_appointment and (date_appointment&gt;current_date) and state == 'draft'">
                 <field name="name"/>
                 <field name="date_appointment"/>
                 <field name='animal_id'/>
@@ -27,8 +30,12 @@
         <field name="arch" type="xml">
             <form string="Vet Appointment">
                 <header>
+                    <button name="send_vet_appointment_reminder" type="object"
+                            string=" Send Reminder" class="btn-warning" icon="fa-calendar"
+                            attrs="{'invisible': ['|',('state', '!=', 'draft'), ('date_appointment', '==', False)]}"/>
                     <button name="action_vet_appointment_send" type="object"
-                            string=" Send by Email" class="oe_highlight" icon="fa-envelope"/>
+                            string=" Send Report" class="oe_highlight" icon="fa-envelope"
+                            attrs="{'invisible': [('state', '==', 'draft')]}"/>
                     <field name="state" widget="statusbar" clickable="True"/>
                 </header>
                 <sheet string="Vet Appointment">
@@ -39,17 +46,15 @@
                                    options='{"terminology": "archive"}'/>
                         </button>
                     </div>
-                    <div class="row">
-                        <div class="col-auto mw-100 mb-2">
+                    <div class="row oe_title">
+                        <div class="mr-3">
                             <h1><field name="name"/></h1>
                         </div>
-                        <div class="col-auto mw-100 mb-10">
+                        <div>
                             <h1><field name="animal_id" placeholder="Pet Animal..."/></h1>
                         </div>
-                        <div class="col-12">
-                            <h6><field name="partner_id"/></h6>
-                        </div>
                     </div>
+
                     <group>
                         <group string='Clinic History'>
                             <field name='history'/>
@@ -63,10 +68,10 @@
                                    domain = "[('veterinarian','=',True)]"/>
                             <field name="privacy_visibility" widget="radio"/>
                             <field name="company_id" groups="base.group_multi_company"/>
-                            <group string='Weight'>
-                                <label for="animal_weight" string="Kgs"/>
-                                <field name='animal_weight' nolabel="1"/>
-                            </group>
+
+                            <separator string="Weight" colspan="2"/>
+                            <label for="animal_weight" string="Kgs"/>
+                            <field name='animal_weight' nolabel="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -105,12 +110,23 @@
         </field>
     </record>
 
+    <record id="vet_appointment_calendar_view" model="ir.ui.view">
+        <field name="name">veterinary appointment calendar</field>
+        <field name="model">veterinary.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Vet Appointment" date_start="date_appointment" color="veterinarian_id">
+                <field name="animal_id"/>
+            </calendar>
+        </field>
+    </record>
+
+
     <!-- ==== ACTIONS ==== -->
     <record id="vet_appointment_action_from_menu" model="ir.actions.act_window">
         <field name="name">Veterinary Appointment</field>
         <field name="res_model">veterinary.appointment</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
         <field name="search_view_id" ref="vet_appointment_filter_view"/>
         <field name="context">{'search_default_my_appointments': 1}</field>
         <field name="help" type="html">

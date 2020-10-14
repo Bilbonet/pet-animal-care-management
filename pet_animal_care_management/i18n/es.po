@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:24+0000\n"
-"PO-Revision-Date: 2020-05-01 18:24+0000\n"
+"POT-Creation-Date: 2020-10-14 10:04+0000\n"
+"PO-Revision-Date: 2020-10-14 10:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "\n"
 "\n"
 "    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
 "       &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />\n"
-"       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz='UTC', format='%d/%m/%Y') or ''}</strong><br>\n"
+"       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>\n"
 "       &nbsp;&nbsp;Your Veterinarian: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
 "    </p>\n"
 "    <br/>\n"
@@ -51,16 +51,16 @@ msgid "\n"
 msgstr "\n"
 "<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "    <p>Hola ${object.partner_id.name or ''},</p>\n"
-"    <p>Le informamos sobre la siguiente cita veterinaria: </p>\n"
+"    <p>Le informamos acerca de la siguiente cita veterinaria: </p>\n"
 "\n"
 "    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
 "       &nbsp;&nbsp;Código: <strong>${object.name}</strong><br />\n"
-"       &nbsp;&nbsp;Fecha: <strong>${format_tz(object.date_appointment, tz='UTC', format='%d/%m/%Y') or ''}</strong><br>\n"
-"       &nbsp;&nbsp;Su veterinario: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
+"       &nbsp;&nbsp;Fecha: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>\n"
+"       &nbsp;&nbsp;Su Veterinario: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
 "    </p>\n"
 "    <br/>\n"
 "    <p>Si tiene alguna pregunta, no dude en contactarnos.</p>\n"
-"    <p>Gracias por su confianza en  ${object.company_id.name or 'us'}!</p>\n"
+"    <p>Gracias por confiar en  ${object.company_id.name or 'us'}!</p>\n"
 "    % if object.veterinarian_id.user_id.signature:\n"
 "       ${object.veterinarian_id.user_id.signature | safe}\n"
 "    % else\n"
@@ -86,9 +86,145 @@ msgid "${'('+object.name+')_'+(object.animal_id.name)}"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_reminder
+msgid "${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})"
+msgstr "${object.company_id.name} Recordatorio Cita Veterinaria (${object.name or 'n/a'})"
+
+#. module: pet_animal_care_management
 #: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
-msgid "${object.company_id.name} Vet Appointment (${object.name or 'n/a'})"
-msgstr "${object.company_id.name} Cita Veterinaria (${object.name or 'n/a'})"
+msgid "${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})"
+msgstr "${object.company_id.name} Informe Cita Veterinaria (${object.name or 'n/a'})"
+
+#. module: pet_animal_care_management
+#: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_reminder
+msgid "<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    % set date = object.date_appointment\n"
+"    <p>\n"
+"        Hello ${object.partner_id.name or ''},<br/><br/>\n"
+"        This is a reminder for the below veterinary appointment :\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%A') or ''}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%d') or ''}\n"
+"            </div>\n"
+"            <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%B') or ''}\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%Y') or ''}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 40px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%H:%M') or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Details of the vet appointment</strong></p>\n"
+"            <ul>\n"
+"                % if object.history:\n"
+"                    <li>History: ${object.history}</li>\n"
+"                % endif\n"
+"                % if object.diagnostic:\n"
+"                    <li>Diagnostic: ${object.diagnostic}</li>\n"
+"                % endif\n"
+"                % if object.treatment:\n"
+"                    <li>Diagnostic: ${object.treatment}</li>\n"
+"                % endif\n"
+"                % if object.veterinarian_id:\n"
+"                <li>Veterinarian: <strong>${object.veterinarian_id.name}</strong>\n"
+"                        <ul>\n"
+"                            <li>Phone: ${object.veterinarian_id.work_phone or ''}</li>\n"
+"                            <li>Email: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\">${object.veterinarian_id.work_email}</a></li>\n"
+"                        </ul>\n"
+"                    </li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Gracias,\n"
+"    <br/>\n"
+"    <div style=\"padding:0px;margin:auto;\">\n"
+"        <table cellspacing=\"0\" cellpadding=\"0\">\n"
+"            <tbody>\n"
+"                <tr>\n"
+"                    <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
+"                        <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </tbody>\n"
+"        </table>\n"
+"    </div>\n"
+"</div>\n"
+"\n"
+"        "
+msgstr "<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    % set date = object.date_appointment\n"
+"    <p>\n"
+"        Hola ${object.partner_id.name or ''},<br/><br/>\n"
+"        Este es un recordatorio para la siguiente cita veterinaria :\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%A') or ''}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%d') or ''}\n"
+"            </div>\n"
+"            <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%B') or ''}\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%Y') or ''}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 40px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${format_tz(date, tz=object.partner_id.tz, format='%H:%M') or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Detalles de la cita veterinaria</strong></p>\n"
+"            <ul>\n"
+"                % if object.history:\n"
+"                    <li>Anamnesis: ${object.history}</li>\n"
+"                % endif\n"
+"                % if object.diagnostic:\n"
+"                    <li>Diagnostico: ${object.diagnostic}</li>\n"
+"                % endif\n"
+"                % if object.treatment:\n"
+"                    <li>Tratamiento: ${object.treatment}</li>\n"
+"                % endif\n"
+"                % if object.veterinarian_id:\n"
+"                <li>Veterinario: <strong>${object.veterinarian_id.name}</strong>\n"
+"                        <ul>\n"
+"                            <li>Telefono: ${object.veterinarian_id.work_phone or ''}</li>\n"
+"                            <li>Mail: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\">${object.veterinarian_id.work_email}</a></li>\n"
+"                        </ul>\n"
+"                    </li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Thank you,\n"
+"    <br/>\n"
+"    <div style=\"padding:0px;margin:auto;\">\n"
+"        <table cellspacing=\"0\" cellpadding=\"0\">\n"
+"            <tbody>\n"
+"                <tr>\n"
+"                    <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
+"                        <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </tbody>\n"
+"        </table>\n"
+"    </div>\n"
+"</div>\n"
+"\n"
+"        "
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
@@ -143,7 +279,7 @@ msgstr "<strong><span>Tipo: </span></strong>"
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "<strong>Birth Date: </strong>"
-msgstr "<strong>Fecha Nacimiento: </strong>"
+msgstr "<strong>F.Nacimiento: </strong>"
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
@@ -349,6 +485,11 @@ msgid "For Today"
 msgstr "Para Hoy"
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__complete_name
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
 msgid "Group By"
 msgstr "Agrupar por"
@@ -378,7 +519,7 @@ msgstr "Asigna visibilidad de la cita veterinaria:\n"
 #. module: pet_animal_care_management
 #: model:ir.model,name:pet_animal_care_management.model_hr_employee
 msgid "Hr Employee"
-msgstr ""
+msgstr "Hr Empleado"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__id
@@ -726,8 +867,13 @@ msgstr "Buscar Cita Veterinario"
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
-msgid "Send by Email"
-msgstr "Enviar por correo electrónico"
+msgid "Send Reminder"
+msgstr "Enviar Recordatorio"
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
+msgid "Send Report"
+msgstr "Envio Informe"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__sex
@@ -768,7 +914,7 @@ msgid "Sterilized"
 msgstr "Esterilizado"
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/pet_animal.py:71
+#: code:addons/pet_animal_care_management/models/pet_animal.py:74
 #: sql_constraint:pet.animal:0
 #, python-format
 msgid "The Pet Identification Code must be unique!"
@@ -827,6 +973,7 @@ msgstr "Usuario"
 
 #. module: pet_animal_care_management
 #: model:ir.ui.menu,name:pet_animal_care_management.vet_appointment_main_menu
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_calendar_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
@@ -891,7 +1038,7 @@ msgid "You can create a new veterinary appointment."
 msgstr "Usted puede crear una nueva cita veterinaria."
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/pet_animal.py:93
+#: code:addons/pet_animal_care_management/models/pet_animal.py:105
 #, python-format
 msgid "You cannot leave blank Pet Animal Code."
 msgstr "No puede dejar en balnco el codigo de la mascota."
