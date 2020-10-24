@@ -55,7 +55,6 @@
         <field name="body_html" type="html">
 
 <div>
-    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}
     % set date = object.date_appointment
     <p>
         Hello ${object.partner_id.name or ''},<br/><br/>
