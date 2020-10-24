@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-14 10:04+0000\n"
-"PO-Revision-Date: 2020-10-14 10:04+0000\n"
+"POT-Creation-Date: 2020-10-19 10:43+0000\n"
+"PO-Revision-Date: 2020-10-19 10:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,6 @@ msgstr "${object.company_id.name} Informe Cita Veterinaria (${object.name or 'n/
 #. module: pet_animal_care_management
 #: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_reminder
 msgid "<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
 "    % set date = object.date_appointment\n"
 "    <p>\n"
 "        Hello ${object.partner_id.name or ''},<br/><br/>\n"
@@ -131,7 +130,7 @@ msgid "<div>\n"
 "                    <li>Diagnostic: ${object.diagnostic}</li>\n"
 "                % endif\n"
 "                % if object.treatment:\n"
-"                    <li>Diagnostic: ${object.treatment}</li>\n"
+"                    <li>Treatment: ${object.treatment}</li>\n"
 "                % endif\n"
 "                % if object.veterinarian_id:\n"
 "                <li>Veterinarian: <strong>${object.veterinarian_id.name}</strong>\n"
@@ -145,7 +144,7 @@ msgid "<div>\n"
 "        </td>\n"
 "    </tr></table>\n"
 "    <br/>\n"
-"    Gracias,\n"
+"    Thank you,\n"
 "    <br/>\n"
 "    <div style=\"padding:0px;margin:auto;\">\n"
 "        <table cellspacing=\"0\" cellpadding=\"0\">\n"
@@ -162,7 +161,6 @@ msgid "<div>\n"
 "\n"
 "        "
 msgstr "<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
 "    % set date = object.date_appointment\n"
 "    <p>\n"
 "        Hola ${object.partner_id.name or ''},<br/><br/>\n"
@@ -201,7 +199,7 @@ msgstr "<div>\n"
 "                <li>Veterinario: <strong>${object.veterinarian_id.name}</strong>\n"
 "                        <ul>\n"
 "                            <li>Telefono: ${object.veterinarian_id.work_phone or ''}</li>\n"
-"                            <li>Mail: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\">${object.veterinarian_id.work_email}</a></li>\n"
+"                            <li>Email: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\">${object.veterinarian_id.work_email}</a></li>\n"
 "                        </ul>\n"
 "                    </li>\n"
 "                % endif\n"
@@ -209,7 +207,7 @@ msgstr "<div>\n"
 "        </td>\n"
 "    </tr></table>\n"
 "    <br/>\n"
-"    Thank you,\n"
+"    Muchas gracias,\n"
 "    <br/>\n"
 "    <div style=\"padding:0px;margin:auto;\">\n"
 "        <table cellspacing=\"0\" cellpadding=\"0\">\n"
@@ -279,7 +277,7 @@ msgstr "<strong><span>Tipo: </span></strong>"
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "<strong>Birth Date: </strong>"
-msgstr "<strong>F.Nacimiento: </strong>"
+msgstr "<strong>Fecha Nacimiento: </strong>"
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
@@ -344,7 +342,7 @@ msgstr "Peso Animal"
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Appointment Data"
-msgstr "Datos Cita"
+msgstr "Fecha Cita"
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
@@ -519,7 +517,7 @@ msgstr "Asigna visibilidad de la cita veterinaria:\n"
 #. module: pet_animal_care_management
 #: model:ir.model,name:pet_animal_care_management.model_hr_employee
 msgid "Hr Employee"
-msgstr "Hr Empleado"
+msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__id
@@ -527,7 +525,7 @@ msgstr "Hr Empleado"
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread
@@ -591,7 +589,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Modificado por última vez el"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__write_uid
@@ -599,7 +597,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__write_uid
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__write_date
@@ -958,7 +956,7 @@ msgstr "Desconocido"
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_unread
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "Unread Messages"
-msgstr "Mensajes sin leer"
+msgstr "Mensajes por leer"
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_unread_counter
