@@ -1,7 +1,8 @@
 # Copyright 2020Jesus Ramiro <jesus@bilbonet.net>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class VeterinaryAppointment(models.Model):
@@ -17,6 +18,21 @@ class VeterinaryAppointment(models.Model):
             ('veterinarian', '=', True)
         ], limit=1)
 
+    # @api.returns('self')
+    # def _default_animal_get(self):
+    #     if self.partner_id and not self.animal_id:
+    #         return self.env['pet.animal'].search([
+    #             ('partner_id', '=', self.partner_id),
+    #             ('active', '=', True)
+    #         ], limit=1)
+        
+    #     return False
+
+    # @api.returns('self')
+    def _default_partner_get(self):
+        if self.animal_id and not self.partner_id:
+            return self.animal_id.partner_id
+        
     name = fields.Char(string='Name',
         required=True, default="/", readonly=True)
     active = fields.Boolean(default=True, copy=False,
@@ -32,17 +48,24 @@ class VeterinaryAppointment(models.Model):
         string='Status', required=True, index=True, default='draft',
         track_visibility='onchange', copy=False)
     animal_id = fields.Many2one('pet.animal',
-        string='Pet Animal', required=True, track_visibility='onchange')
-    partner_id = fields.Many2one(related="animal_id.partner_id",
-        string='Owner')
+        string='Pet Animal',
+        readonly=True, states={'draft': [('readonly', False)]}, 
+        track_visibility='onchange')
+    partner_id = fields.Many2one('res.partner',
+        string='Customer', default=_default_partner_get,
+        readonly=True, states={'draft': [('readonly', False)]})
     veterinarian_id = fields.Many2one('hr.employee',
         string='Veterinarian', default=_default_veterinarian_get,
-        required=True, track_visibility='onchange')
+        required=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
     date_appointment = fields.Datetime(string='Date of Appointment',
+        states={'done': [('required', True),('readonly', True)]},
         track_visibility='onchange', copy=False)
-    history = fields.Text(string="Clinic History")
-    diagnostic = fields.Text(string="Diagnostic")
-    treatment = fields.Text(string="Treatment")
+    history = fields.Text(string="Clinic History",
+        readonly=True, states={'draft': [('readonly', False)]})
+    diagnostic = fields.Text(string="Diagnostic",
+        readonly=True, states={'draft': [('readonly', False)]})
+    treatment = fields.Text(string="Treatment",
+        readonly=True, states={'draft': [('readonly', False)]})
     animal_weight = fields.Float(string='Animal Weight')
     privacy_visibility = fields.Selection([
         ('followers', 'Veterinarian and followers'),
@@ -53,6 +76,27 @@ class VeterinaryAppointment(models.Model):
              "can be able to see the pet animal\n"
              "- Visible by all employees: Only employees "
              "may see the pet animal\n")
+
+    @api.onchange('state')
+    def _onchnge_state(self):
+        if not self.date_appointment and self.state != 'draft':
+            raise ValidationError(
+                _("You must set a datetime for the appointment."))
+        pass
+
+    @api.onchange('partner_id')
+    def _onchange_partner(self):
+        if self.partner_id and not self.animal_id:
+            animal = self.env['pet.animal'].search([
+                        ('partner_id', '=', self.partner_id.id),
+                        ('active', '=', True)
+                    ], limit=1)
+            self.animal_id = animal
+        
+    @api.onchange('animal_id')
+    def _onchange_animal(self):
+        if self.animal_id and not self.partner_id:
+            self.partnet_id = self.animal_id.partner_id
 
     @api.model
     def create(self, vals):
