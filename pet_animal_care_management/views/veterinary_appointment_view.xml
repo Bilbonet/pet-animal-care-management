@@ -46,15 +46,20 @@
                                    options='{"terminology": "archive"}'/>
                         </button>
                     </div>
+                    <div class="o_row">
+                        <field name="partner_id" placeholder="Customer..." domain="[]"
+                               options="{'no_create': True}" 
+                               attrs="{'required': [('animal_id', '=', False)]}"/>
+                    </div>
                     <div class="row oe_title">
                         <div class="mr-3">
                             <h1><field name="name"/></h1>
                         </div>
                         <div>
-                            <h1><field name="animal_id" placeholder="Pet Animal..."/></h1>
+                            <h1><field name="animal_id" placeholder="Pet Animal..."
+                                       attrs="{'required': [('partner_id', '=', False)]}"/></h1>
                         </div>
                     </div>
-
                     <group>
                         <group string='Clinic History'>
                             <field name='history'/>
@@ -119,7 +124,6 @@
             </calendar>
         </field>
     </record>
-
 
     <!-- ==== ACTIONS ==== -->
     <record id="vet_appointment_action_from_menu" model="ir.actions.act_window">
