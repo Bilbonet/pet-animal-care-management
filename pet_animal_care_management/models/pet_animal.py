@@ -1,8 +1,7 @@
 # Copyright 2020Jesus Ramiro <jesus@bilbonet.net>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
-from odoo import tools, _
+from odoo import api, fields, models, tools, _
 from odoo.exceptions import ValidationError
 
 
@@ -12,6 +11,11 @@ class PetAnimal(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'name desc'
     _rec_name = 'complete_name'
+
+    @api.depends("vet_appointment_ids")
+    def _compute_vet_appointment_count(self):
+        for pet in self:
+            pet.vet_apmt_count = len(pet.vet_appointment_ids)
 
     name = fields.Char(string='Name', index=True,
         copy=False, help="Pet's name")
@@ -64,10 +68,10 @@ class PetAnimal(models.Model):
              "- Visible by all employees: Only employees "
              "may see the pet animal\n")
     note = fields.Text(string='Notes')
-    vet_appointment_ids = fields.One2many('veterinary.appointment',
-        'animal_id', 'Veterinarian Appointments')
-    vet_apmt_count = fields.Integer(compute='_compute_vet_appointment_count',
-        string="Amount Vet Appointment")
+    vet_appointment_ids = fields.One2many(string='Veterinarian Appointments',
+        comodel_name='veterinary.appointment', inverse_name='animal_id', )
+    vet_apmt_count = fields.Integer(string="Amount Vet Appointment",
+        compute='_compute_vet_appointment_count', store=True)
 
     _sql_constraints = [
         ('pet_animal_unique_code', 'UNIQUE (pet_code)',
@@ -82,14 +86,6 @@ class PetAnimal(models.Model):
             self.complete_name = '%s (%s)' % (self.name, self.partner_id.name)
         else:
             self.complete_name = self.name
-
-    def _compute_vet_appointment_count(self):
-        for pet in self:
-            pet.vet_apmt_count = self.env['veterinary.appointment'].search_count([
-                ('animal_id', '=', pet.id),
-                '|', ('active', '=', True), ('active', '=', False)
-            ])
-
 
     @api.model
     def create(self, vals):

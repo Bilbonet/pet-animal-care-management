@@ -123,7 +123,6 @@
                             <field name='pet_sub_type_id' widget='selection'
                                    attrs="{'invisible': [('pet_type_id','=', False)]}"
                                    domain = "[('pet_type_id','=',pet_type_id)]"/>
-
                             <field name='pet_birth_date'/>
                             <label for="sex"/>
                             <div class="row">
@@ -151,6 +150,7 @@
                             <field name="vet_appointment_ids"
                                    context="{'form_view_ref': 'pet_animal_care_management.vet_appointment_form_from_pet_view'}">
                                 <tree default_order="date_appointment" create="false" delete="false">
+                                    <field name="state" invisible="1"/>
                                     <field name="name"/>
                                     <field name="date_appointment"/>
                                     <field name="history"/>
@@ -226,6 +226,9 @@
         <field name="model">veterinary.appointment</field>
         <field name="arch" type="xml">
             <form string="Vet Appointment">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet string="Vet Appointment">
                     <h1><field name="name"/></h1>
                     <group>
