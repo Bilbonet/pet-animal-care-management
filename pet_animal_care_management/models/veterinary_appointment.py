@@ -43,7 +43,7 @@ class VeterinaryAppointment(models.Model):
         track_visibility='onchange')
     partner_id = fields.Many2one('res.partner',
         string='Customer', default=_default_partner_get,
-        states={'draft': [('readonly', False)]})
+        states={'done': [('required', True),('readonly', True)]},)
     veterinarian_id = fields.Many2one('hr.employee',
         string='Veterinarian', default=_default_veterinarian_get,
         required=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
@@ -87,7 +87,7 @@ class VeterinaryAppointment(models.Model):
     @api.onchange('animal_id')
     def _onchange_animal(self):
         if self.animal_id and not self.partner_id:
-            self.partnet_id = self.animal_id.partner_id
+            self.partner_id = self.animal_id.partner_id
 
     @api.model
     def create(self, vals):
