@@ -11,24 +11,14 @@ class VeterinaryAppointment(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "date_appointment desc"
 
-    @api.returns('self')
+    @api.returns('self', lambda value: value.id if value else False)
     def _default_veterinarian_get(self):
         return self.env['hr.employee'].search([
             ('user_id', '=', self.env.uid),
             ('veterinarian', '=', True)
         ], limit=1)
 
-    # @api.returns('self')
-    # def _default_animal_get(self):
-    #     if self.partner_id and not self.animal_id:
-    #         return self.env['pet.animal'].search([
-    #             ('partner_id', '=', self.partner_id),
-    #             ('active', '=', True)
-    #         ], limit=1)
-        
-    #     return False
-
-    # @api.returns('self')
+    @api.returns('self', lambda value: value.id if value else False)
     def _default_partner_get(self):
         if self.animal_id and not self.partner_id:
             return self.animal_id.partner_id
@@ -47,13 +37,13 @@ class VeterinaryAppointment(models.Model):
         ('cancel','Cancel')],
         string='Status', required=True, index=True, default='draft',
         track_visibility='onchange', copy=False)
-    animal_id = fields.Many2one('pet.animal',
-        string='Pet Animal',
-        readonly=True, states={'draft': [('readonly', False)]}, 
+    animal_id = fields.Many2one(string='Pet Animal',
+        comodel_name='pet.animal', readonly=True, 
+        states={'draft': [('readonly', False)]}, 
         track_visibility='onchange')
     partner_id = fields.Many2one('res.partner',
         string='Customer', default=_default_partner_get,
-        readonly=True, states={'draft': [('readonly', False)]})
+        states={'draft': [('readonly', False)]})
     veterinarian_id = fields.Many2one('hr.employee',
         string='Veterinarian', default=_default_veterinarian_get,
         required=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
@@ -91,7 +81,8 @@ class VeterinaryAppointment(models.Model):
                         ('partner_id', '=', self.partner_id.id),
                         ('active', '=', True)
                     ], limit=1)
-            self.animal_id = animal
+            if animal:
+                self.animal_id = animal
         
     @api.onchange('animal_id')
     def _onchange_animal(self):
