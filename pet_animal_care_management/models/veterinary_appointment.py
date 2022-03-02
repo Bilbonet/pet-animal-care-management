@@ -11,12 +11,14 @@ class VeterinaryAppointment(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "date_appointment desc"
 
+    @api.returns('self', lambda value: value.id if value else False)
     def _default_veterinarian_get(self):
         return self.env['hr.employee'].search([
             ('user_id', '=', self.env.uid),
             ('veterinarian', '=', True)
         ], limit=1)
 
+    @api.returns('self', lambda value: value.id if value else False)
     def _default_partner_get(self):
         if self.animal_id and not self.partner_id:
             return self.animal_id.partner_id
@@ -34,20 +36,20 @@ class VeterinaryAppointment(models.Model):
         ('done','Done'),
         ('cancel','Cancel')],
         string='Status', required=True, index=True, default='draft',
-        tracking=True, copy=False)
+        track_visibility='onchange', copy=False)
     animal_id = fields.Many2one(string='Pet Animal',
         comodel_name='pet.animal', readonly=True, 
         states={'draft': [('readonly', False)]}, 
-        tracking=True)
+        track_visibility='onchange')
     partner_id = fields.Many2one('res.partner',
         string='Customer', default=_default_partner_get,
         states={'done': [('required', True),('readonly', True)]},)
     veterinarian_id = fields.Many2one('hr.employee',
         string='Veterinarian', default=_default_veterinarian_get,
-        required=True, states={'done': [('readonly', True)]}, tracking=True)
+        required=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
     date_appointment = fields.Datetime(string='Date of Appointment',
         states={'done': [('required', True),('readonly', True)]},
-        tracking=True, copy=False)
+        track_visibility='onchange', copy=False)
     history = fields.Text(string="Clinic History",
         readonly=True, states={'draft': [('readonly', False)]})
     diagnostic = fields.Text(string="Diagnostic",
@@ -87,6 +89,7 @@ class VeterinaryAppointment(models.Model):
         if self.animal_id and not self.partner_id:
             self.partner_id = self.animal_id.partner_id
 
+    @api.model
     def create(self, vals):
         # context: no_log, because subtype already handle this
         context = dict(self.env.context, mail_create_nolog=True)
@@ -99,6 +102,7 @@ class VeterinaryAppointment(models.Model):
         va = super(VeterinaryAppointment, self.with_context(context)).create(vals)
         return va
 
+    @api.multi
     def action_vet_appointment_send(self):
         '''
         This function opens a window to compose an email,
@@ -141,6 +145,7 @@ class VeterinaryAppointment(models.Model):
             'context': ctx,
         }
 
+    @api.multi
     def send_vet_appointment_reminder(self):
         self.ensure_one()
         ir_model_data = self.env['ir.model.data']
