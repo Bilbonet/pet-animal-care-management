@@ -129,7 +129,6 @@
     <record id="vet_appointment_action_from_menu" model="ir.actions.act_window">
         <field name="name">Veterinary Appointment</field>
         <field name="res_model">veterinary.appointment</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,calendar</field>
         <field name="search_view_id" ref="vet_appointment_filter_view"/>
         <field name="context">{'search_default_my_appointments': 1}</field>
