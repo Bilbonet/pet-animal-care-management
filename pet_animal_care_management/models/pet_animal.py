@@ -52,9 +52,9 @@ class PetAnimal(models.Model):
     pet_type_id = fields.Many2one('pet.animal.type',string='Type')
     pet_sub_type_id = fields.Many2one('pet.animal.sub_type',string='Sub Type')
     veterinarian_id = fields.Many2one('hr.employee',
-        string='Veterinarian', track_visibility='onchange')
+        string='Veterinarian', tracking=True)
     partner_id = fields.Many2one('res.partner',
-        string='Owner', track_visibility='onchange')
+        string='Owner', tracking=True)
     company_id = fields.Many2one('res.company',
         string='Company',
         default=lambda self: self.env['res.company']._company_default_get())
@@ -78,7 +78,6 @@ class PetAnimal(models.Model):
          _('The Pet Identification Code must be unique!')),
     ]
 
-    @api.one
     @api.depends('name', 'partner_id')
     def _compute_complete_name(self):
         """ Forms complete name of location from parent location to child location. """
@@ -95,7 +94,6 @@ class PetAnimal(models.Model):
         tools.image_resize_images(vals)
         return super(PetAnimal, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if vals.get('pet_code', '/') == False:
             raise ValidationError(_('You cannot leave blank Pet Animal Code.'))

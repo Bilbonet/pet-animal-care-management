@@ -188,11 +188,11 @@
             </search>
         </field>
     </record>
+
     <!-- ==== ACTIONS ==== -->
     <record id="pet_animal_action_from_menu" model="ir.actions.act_window">
         <field name="name">Pet Animal</field>
         <field name="res_model">pet.animal</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref="pet_animal_kanban_view" />
         <field name="search_view_id" ref="pet_animal_filter_view"/>
