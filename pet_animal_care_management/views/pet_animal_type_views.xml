@@ -32,7 +32,6 @@
     <record id="pet_type_action_from_menu" model="ir.actions.act_window">
         <field name="name">Pet Animal Type</field>
         <field name="res_model">pet.animal.type</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="pet_type_tree_view" />
     </record>
@@ -82,7 +81,6 @@
     <record id="pet_sub_type_action_from_menu" model="ir.actions.act_window">
         <field name="name">Pet Sub Type</field>
         <field name="res_model">pet.animal.sub_type</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="pet_sub_type_tree_view" />
     </record>
