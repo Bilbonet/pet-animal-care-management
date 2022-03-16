@@ -36,7 +36,7 @@ class PetAnimal(models.Model):
     sex = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
-        ('unknow', 'Unknow')], stirng="Sex", copy=False)
+        ('unknow', 'Unknow')], string="Sex", copy=False)
     sterilized = fields.Boolean(string="Sterilized")
     image = fields.Binary(string="Big-sized image", attachment=True,
         help="This field holds the image used as image for the pet animal, "
