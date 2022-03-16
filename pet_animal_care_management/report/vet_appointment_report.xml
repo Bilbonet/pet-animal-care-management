@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <odoo>
-    <report
-        id="vet_appointment_report_action"
-        string="Print Vet Appointment"
-        model="veterinary.appointment"
-        report_type="qweb-pdf"
-        file="sale.report_saleorder"
-        name="pet_animal_care_management.vet_appintment_report_document"
-        print_report_name="'('+object.name+')_'+object.name.replace(' ', '-')"/>
-
+    <record id="vet_appointment_report_action" model="ir.actions.report">
+        <field name="name">Print Vet Appointment</field>
+        <field name="model">veterinary.appointment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pet_animal_care_management.vet_appintment_report_document</field>
+        <field name="report_file">pet_animal_care_management.vet_appintment_report_document</field>
+        <field name="print_report_name">'('+object.name+')_'+object.name.replace(' ', '-')</field>
+    </record>
 
     <template id="vet_appintment_report_document">
         <t t-call="web.html_container">
