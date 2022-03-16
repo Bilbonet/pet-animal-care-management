@@ -8,7 +8,7 @@ class PetAimalType(models.Model):
     _name = "pet.animal.type"
     _description = "Pet Animal Type"
 
-    name = fields.Char(String='Name', required=True)
+    name = fields.Char(string='Name', required=True)
 
     _sql_constraints = [
         ('pet_animal_type_unique_code', 'UNIQUE (name)',
@@ -20,6 +20,7 @@ class PetAnimalSubType(models.Model):
     _name = "pet.animal.sub_type"
     _description = "Pet Animal Sub Type"
 
-    name = fields.Char(String='Name', required=True)
-    pet_type_id = fields.Many2one('pet.animal.type', strin='Pet Type', required=True)
+    name = fields.Char(string='Name', required=True)
+    pet_type_id = fields.Many2one(string='Pet Type',
+        comodel_name='pet.animal.type',  required=True)
 
