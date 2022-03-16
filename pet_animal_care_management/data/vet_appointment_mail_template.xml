@@ -51,8 +51,9 @@
         <field name="subject">${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})</field>
         <field name="email_from">${(object.veterinarian_id.work_email and '%s &lt;%s&gt;' % (object.veterinarian_id.name, object.veterinarian_id.work_email) or '')|safe}</field>
         <field name="email_to">${(object.partner_id.email or '')|safe}</field>
+        <field name="auto_delete" eval="True"/>
         <field name="lang">${object.partner_id.lang}</field>
-        <field name="body_html" type="html">
+        <field name="body_html"><![CDATA[
 
 <div>
     % set date = object.date_appointment
@@ -116,9 +117,7 @@
     </div>
 </div>
 
-        </field>
-        <field name="auto_delete" eval="True"/>
-        <field name="user_signature" eval="False"/>
+        ]]></field>
     </record>
 
 </odoo>
