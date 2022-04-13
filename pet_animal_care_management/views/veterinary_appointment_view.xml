@@ -39,13 +39,9 @@
                     <field name="state" widget="statusbar" clickable="True"/>
                 </header>
                 <sheet string="Vet Appointment">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object"
-                                class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button"
-                                   options='{"terminology": "archive"}'/>
-                        </button>
-                    </div>
+                    <div class="oe_button_box" name="button_box"/>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <div class="o_row">
                         <field name="partner_id" placeholder="Customer..." domain="[]"
                                options="{'no_create': True}" 
