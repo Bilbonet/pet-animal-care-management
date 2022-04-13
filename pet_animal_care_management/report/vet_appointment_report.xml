@@ -6,7 +6,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">pet_animal_care_management.vet_appintment_report_document</field>
         <field name="report_file">pet_animal_care_management.vet_appintment_report_document</field>
-        <field name="print_report_name">'('+object.name+')_'+object.name.replace(' ', '-')</field>
+        <field name="print_report_name">'(%s)_%s-%s' % (object.name, object.animal_id.name.replace(' ', '_'), object.animal_id.partner_id.name.replace(' ', '_') or '')</field>
     </record>
 
     <template id="vet_appintment_report_document">
@@ -14,51 +14,76 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout" t-lang="doc.partner_id.lang">
                     <div class="page">
+
                         <div class="row" name="head_report">
-                            <div class="col-3">
-                                <h5 t-field="doc.animal_id.name"/>
-                                <img t-if="doc.animal_id.image_128" t-att-src="image_data_uri(doc.animal_id.image_128)" alt="Pet Image" style="max-height: 128px;"/>
+                            <div t-if="doc.animal_id.image_128" class="col-auto">
+                                <img t-att-src="image_data_uri(doc.animal_id.image_128)" alt="Pet Image" style="max-height: 128px;"/>
                             </div>
-                            <div class="col-4">
-                                <h6>Pet Data</h6>
+                            <div class="col-auto">
+                                <h5>
+                                    Name: <span t-field="doc.animal_id.name"/>
+                                </h5>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <small>Species: </small>
-                                        <span t-field="doc.animal_id.pet_type_id"/>
+                                        Species: 
+                                        <b><span t-field="doc.animal_id.pet_type_id"/>
                                         <span t-if="doc.animal_id.pet_sub_type_id">
                                             (<span t-field="doc.animal_id.pet_sub_type_id"/>)
-                                        </span>
+                                        </span></b>
                                     </li>
-                                    <li>
-                                        <small>Sex: </small><span t-field="doc.animal_id.sex"/>
+                                    <li>Sex: <b><span t-field="doc.animal_id.sex"/></b></li>
+                                    <li>Chip/Code: <b><span t-field="doc.animal_id.pet_code"/></b></li>
+                                    <li>Birth Date: <b><span t-field="doc.animal_id.pet_birth_date"/></b></li>
+                                    <li t-if="doc.animal_weight">
+                                        <span>Weight: <b><span t-field="doc.animal_weight"/> Kgs</b></span>
                                     </li>
-                                    <li><small>Chip/Code: </small><span t-field="doc.animal_id.pet_code"/></li>
-                                    <li><small>Birth Date: </small><span t-field="doc.animal_id.pet_birth_date"/></li>
                                 </ul>
                             </div>
-                            <div class="col-5">
-                                <h6>Owner Data</h6>
+                            <div class="col-auto">
+                                <h5>Owner Data</h5>
                                 <ul class="list-unstyled">
-                                    <li><small>Name: </small><span t-field="doc.partner_id"/></li>
-                                    <li><small>Phone: </small><span t-field="doc.partner_id.phone"/></li>
-                                    <li><small>Email: </small><span t-field="doc.partner_id.email"/></li>
+                                    <li>Name: <span t-field="doc.partner_id.name"/></li>
+                                    <li>Phone: <span t-field="doc.partner_id.phone"/></li>
+                                    <li>Email: <span t-field="doc.partner_id.email"/></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="row mt32 mb16" name="body_report">
-                            <div class="col-4">
-                                <h4 t-field="doc.date_appointment"/>
-                                <span t-if="doc.animal_weight">Weight: <b><span t-field="doc.animal_weight"/> Kgs</b></span>
-                            </div>
-                            <div class="col-8">
-                                <h4 t-field="doc.veterinarian_id"/>
-                            </div>
+                        <div class="row mt-3 mb-3" name="data_report">
+                            <table class="table table-sm o_main_table mt32 mb32">
+                                <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th name="th_description">
+                                            <small>Vet Appointment:</small>
+                                            <p t-field="doc.name"/>
+                                        </th>
+                                        <th name="th_description" >
+                                            <small>Date:</small>
+                                            <p t-field="doc.date_appointment"/>
+                                        </th>
+                                        <th name="th_description">
+                                            <small>Veterinarian:</small>
+                                            <p t-field="doc.veterinarian_id"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        <div>
-                            <p><strong>History: </strong><span t-field="doc.history"/></p>
-                            <p t-if="doc.diagnostic" style="color:#A85A5A;"><strong>Diagnostic: </strong><span t-field="doc.diagnostic"/></p>
-                            <p t-if="doc.treatment" style="color:#248D90;"><strong>Treatment: </strong><span t-field="doc.treatment"/></p>
+
+                        <div name="body_report">
+                            <div class="mt-2 mb-2" t-if="doc.history">
+                                <b>History:</b><br/>
+                                <span t-field="doc.history"/>
+                            </div>
+                            <div class="mt-2 mb-2" t-if="doc.diagnostic" style="color:#A85A5A;">
+                                <b>Diagnostic:</b><br/>
+                                <span t-field="doc.diagnostic"/>
+                            </div>
+                            <div class="mt-1" t-if="doc.treatment" style="color:#248D90;">
+                                <b>Treatment:</b><br/>
+                                <span t-field="doc.treatment"/>
+                            </div>
                          </div>
 
                     </div>
