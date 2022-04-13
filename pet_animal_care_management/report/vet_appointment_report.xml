@@ -17,7 +17,7 @@
                         <div class="row" name="head_report">
                             <div class="col-3">
                                 <h5 t-field="doc.animal_id.name"/>
-                                <img t-if="doc.animal_id.image_medium" t-att-src="image_data_uri(doc.animal_id.image_medium)" alt="Pet Image" style="max-height: 128px;"/>
+                                <img t-if="doc.animal_id.image_128" t-att-src="image_data_uri(doc.animal_id.image_128)" alt="Pet Image" style="max-height: 128px;"/>
                             </div>
                             <div class="col-4">
                                 <h6>Pet Data</h6>

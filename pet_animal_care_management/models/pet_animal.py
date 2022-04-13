@@ -1,14 +1,13 @@
-# Copyright 2020Jesus Ramiro <jesus@bilbonet.net>
+# Copyright 2022 Jesus Ramiro <jesus@bilbonet.net>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 
 class PetAnimal(models.Model):
     _name = 'pet.animal'
     _description = 'Pet Animal Information'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'image.mixin']
     _order = 'name desc'
     _rec_name = 'complete_name'
 
@@ -38,17 +37,6 @@ class PetAnimal(models.Model):
         ('female', 'Female'),
         ('unknow', 'Unknow')], string="Sex", copy=False)
     sterilized = fields.Boolean(string="Sterilized")
-    image = fields.Binary(string="Big-sized image", attachment=True,
-        help="This field holds the image used as image for the pet animal, "
-             "limited to 1024x1024px.")
-    image_medium = fields.Binary(string='Medium-sized image', attachment=True,
-        help="Medium-sized image of the pet animal. It is automatically "
-             "resized as a 128x128px image, with aspect ratio preserved. "
-             "Use this field in form views or some kanban views.")
-    image_small = fields.Binary(string='Small-sized image', attachment=True,
-        help="Small-sized image of the pet animal. It is automatically "
-             "resized as a 64x64px image, with aspect ratio preserved. "
-             "Use this field anywhere a small image is required.")
     pet_type_id = fields.Many2one('pet.animal.type',string='Type')
     pet_sub_type_id = fields.Many2one('pet.animal.sub_type',string='Sub Type')
     veterinarian_id = fields.Many2one(string='Veterinarian', 
@@ -91,11 +79,9 @@ class PetAnimal(models.Model):
         if not vals.get('pet_code', False):
             vals['pet_code'] = \
                 self.env['ir.sequence'].sudo().next_by_code('pet.animal')
-        tools.image_resize_images(vals)
         return super(PetAnimal, self).create(vals)
 
     def write(self, vals):
         if vals.get('pet_code', '/') == False:
             raise ValidationError(_('You cannot leave blank Pet Animal Code.'))
-        tools.image_resize_images(vals)
         return super(PetAnimal, self).write(vals)

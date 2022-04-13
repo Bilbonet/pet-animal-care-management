@@ -179,3 +179,13 @@ class VeterinaryAppointment(models.Model):
             'target': 'new',
             'context': ctx,
         }
+
+    def view_vet_appointment(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'veterinary.appointment',
+            'res_id': self.id,
+            'view_type': 'form',
+            'view_mode': 'form',
+        }
