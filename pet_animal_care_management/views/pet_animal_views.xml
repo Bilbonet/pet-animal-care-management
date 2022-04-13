@@ -100,16 +100,12 @@
         <field name="model">pet.animal</field>
         <field name="arch" type="xml">
             <form string="Pet Animal">
-                <sheet string="Pet Animal">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object"
-                                class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button"
-                                   options='{"terminology": "archive"}'/>
-                        </button>
-                    </div>
-                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
                     <div class="oe_title">
+                        <field name="active" invisible="1"/>
                         <h1>
                             <field name="name" required='True' placeholder="Its cute Name..."/>
                         </h1>
@@ -141,10 +137,6 @@
                             <field name='partner_id' required='True' options="{'no_create': True}"/>
                             <field name='veterinarian_id' widget='selection'
                                    domain="[('veterinarian','=',True)]"/>
-                            <!-- <field name='veterinarian_id' options='{"no_open": True, "no_create": True}'
-                                   placeholder="Veterinarian..."
-                                   domain="[('veterinarian','=',True)]"/> -->
-
                             <field name="privacy_visibility" widget="radio"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
