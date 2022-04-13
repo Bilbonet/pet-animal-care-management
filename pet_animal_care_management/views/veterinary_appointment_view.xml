@@ -70,7 +70,7 @@
                             <field name='date_appointment'/>
                             <field name='veterinarian_id' options='{"no_open": True, "no_create": True}'
                                    placeholder="Veterinarian..."
-                                   domain = "[('veterinarian','=',True)]"/>
+                                   domain="[('veterinarian','=',True)]"/>
                             <field name="privacy_visibility" widget="radio"/>
                             <field name="company_id" groups="base.group_multi_company"/>
 

@@ -51,8 +51,8 @@ class PetAnimal(models.Model):
              "Use this field anywhere a small image is required.")
     pet_type_id = fields.Many2one('pet.animal.type',string='Type')
     pet_sub_type_id = fields.Many2one('pet.animal.sub_type',string='Sub Type')
-    veterinarian_id = fields.Many2one('hr.employee',
-        string='Veterinarian', tracking=True)
+    veterinarian_id = fields.Many2one(string='Veterinarian', 
+        comodel_name='hr.employee', tracking=True)
     partner_id = fields.Many2one('res.partner',
         string='Owner', tracking=True)
     company_id = fields.Many2one('res.company',
