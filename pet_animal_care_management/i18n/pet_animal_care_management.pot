@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* pet_animal_care_management
+# 	* pet_animal_care_management
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 10:49+0000\n"
-"PO-Revision-Date: 2022-02-27 10:49+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-04-13 19:06+0000\n"
+"PO-Revision-Date: 2022-04-13 19:06+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,58 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pet_animal_care_management
-#: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_template
-msgid "\n"
-"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
-"    <p>Hello ${object.partner_id.name or ''},</p>\n"
-"    <p>We inform you about the following Veterinary Appointment: </p>\n"
-"\n"
-"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
-"       &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />\n"
-"       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>\n"
-"       &nbsp;&nbsp;Your Veterinarian: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
-"    </p>\n"
-"    <br/>\n"
-"    <p>If you have any question, do not hesitate to contact us.</p>\n"
-"    <p>Thank you for trusting in  ${object.company_id.name or 'us'}!</p>\n"
-"    % if object.veterinarian_id.user_id.signature:\n"
-"       ${object.veterinarian_id.user_id.signature | safe}\n"
-"    % else\n"
-"        <div style=\"padding:0px;margin:auto;\">\n"
-"            <table cellspacing=\"0\" cellpadding=\"0\">\n"
-"                <tbody>\n"
-"                    <tr>\n"
-"                        <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
-"                            <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
-"                        </td>\n"
-"                    </tr>\n"
-"                </tbody>\n"
-"            </table>\n"
-"        </div>\n"
-"    % endif\n"
-"    <br/>\n"
-"</div>\n"
-"        "
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:mail.template,report_name:pet_animal_care_management.vet_appointment_email_template
-msgid "${'('+object.name+')_'+(object.animal_id.name)}"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_reminder
-msgid "${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
-msgid "${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})"
-msgstr ""
-
-#. module: pet_animal_care_management
 #: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_reminder
-msgid "<div>\n"
+msgid ""
+"\n"
+"\n"
+"<div>\n"
 "    % set date = object.date_appointment\n"
 "    <p>\n"
 "        Hello ${object.partner_id.name or ''},<br/><br/>\n"
@@ -81,7 +34,7 @@ msgid "<div>\n"
 "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
 "                ${format_tz(date, tz=object.partner_id.tz, format='%d') or ''}\n"
 "            </div>\n"
-"            <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
 "                ${format_tz(date, tz=object.partner_id.tz, format='%B') or ''}\n"
 "                ${format_tz(date, tz=object.partner_id.tz, format='%Y') or ''}\n"
 "            </div>\n"
@@ -133,6 +86,64 @@ msgid "<div>\n"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_template
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hello ${object.partner_id.name or ''},</p>\n"
+"    <p>We inform you about the following Veterinary Appointment: </p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>\n"
+"       &nbsp;&nbsp;Your Veterinarian: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for trusting in  ${object.company_id.name or 'us'}!</p>\n"
+"    % if object.veterinarian_id.user_id.signature:\n"
+"       ${object.veterinarian_id.user_id.signature | safe}\n"
+"    % else\n"
+"        <div style=\"padding:0px;margin:auto;\">\n"
+"            <table cellspacing=\"0\" cellpadding=\"0\">\n"
+"                <tbody>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
+"                            <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </tbody>\n"
+"            </table>\n"
+"        </div>\n"
+"    % endif\n"
+"    <br/>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,report_name:pet_animal_care_management.vet_appointment_email_template
+msgid "${'('+object.name+')_'+(object.animal_id.name)}"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_reminder
+msgid ""
+"${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
+msgid ""
+"${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.actions.report,print_report_name:pet_animal_care_management.vet_appointment_report_action
+msgid "'('+object.name+')_'+object.name.replace(' ', '-')"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
 msgstr ""
@@ -144,37 +155,17 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Birth Date: </small>"
+msgid "<small>Date:</small>"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Chip/Code: </small>"
+msgid "<small>Vet Appointment:</small>"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Email: </small>"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Name: </small>"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Phone: </small>"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Sex: </small>"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<small>Species: </small>"
+msgid "<small>Veterinarian:</small>"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -189,12 +180,12 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<strong>Diagnostic: </strong>"
+msgid "<strong>Diagnostic:</strong><br/>"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<strong>History: </strong>"
+msgid "<strong>History:</strong><br/>"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -204,12 +195,14 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "<strong>Treatment: </strong>"
+msgid "<strong>Treatment:</strong><br/>"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__passport
-msgid "A pet passport is a document that officially records information related to a specific animal."
+msgid ""
+"A pet passport is a document that officially records information related to "
+"a specific animal."
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -231,9 +224,21 @@ msgid "Activities"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_exception_decoration
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_state
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_type_icon
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -254,7 +259,9 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_form_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
 msgid "Archived"
 msgstr ""
 
@@ -265,18 +272,28 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image
-msgid "Big-sized image"
+#: model:ir.model,name:pet_animal_care_management.model_hr_employee_base
+msgid "Basic Employee"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:veterinary.appointment,state:0
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Birth Date:"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__state__cancel
 msgid "Cancel"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_form_view
 msgid "Chip/Code (leave blank will assign one...)"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Chip/Code:"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -350,6 +367,7 @@ msgid "Diagnostic"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__display_name
@@ -358,12 +376,27 @@ msgid "Display Name"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:veterinary.appointment,state:0
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__state__done
 msgid "Done"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,sex:0
+#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_pet_animal_unique_code
+msgid "El código de identificación debe ser único!"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_type_pet_animal_type_unique_code
+msgid "El nombre de este Tipo ya existe, debe ser unico!"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Email:"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__sex__female
 msgid "Female"
 msgstr ""
 
@@ -383,6 +416,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_partner_ids
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_partner_ids
 msgid "Followers (Partners)"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__activity_type_icon
+#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -412,26 +451,22 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__privacy_visibility
-msgid "Holds visibility of the pet animal:\n"
+msgid ""
+"Holds visibility of the pet animal:\n"
 "- Veterinarian and followers: Only followers, veterinarian and managers can be able to see the pet animal\n"
 "- Visible by all employees: Only employees may see the pet animal\n"
-""
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__privacy_visibility
-msgid "Holds visibility of the vet appointment:\n"
+msgid ""
+"Holds visibility of the vet appointment:\n"
 "- Veterinarian and followers: Only followers, veterinarian and managers can be able to see the pet animal\n"
 "- Visible by all employees: Only employees may see the pet animal\n"
-""
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model,name:pet_animal_care_management.model_hr_employee
-msgid "Hr Employee"
-msgstr ""
-
-#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__id
@@ -440,14 +475,22 @@ msgid "ID"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread
-#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_exception_icon
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__activity_exception_icon
+#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_needaction
+#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_needaction
+#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -459,17 +502,48 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__active
-msgid "If the active field is set to False, it will allow you to hide the pet animal without removing it."
+msgid ""
+"If the active field is set to False, it will allow you to hide the pet "
+"animal without removing it."
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__active
-msgid "If the active field is set to False, it will allow you to hide the veterinary appointment without removing it."
+msgid ""
+"If the active field is set to False, it will allow you to hide the "
+"veterinary appointment without removing it."
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_1920
+msgid "Image"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_512
+msgid "Image 512"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__pet_code
-msgid "Individual code identification of the pet animal. With dogs usually be the chip code."
+msgid ""
+"Individual code identification of the pet animal. With dogs usually be the "
+"chip code."
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -480,6 +554,8 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee__veterinarian
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base__veterinarian
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_public__veterinarian
 msgid "Is Veterinarian"
 msgstr ""
 
@@ -496,6 +572,7 @@ msgid "Kgs"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type____last_update
@@ -526,23 +603,13 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,sex:0
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__sex__male
 msgid "Male"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:res.groups,name:pet_animal_care_management.group_pacm_manager
 msgid "Manager"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_medium
-msgid "Medium-sized image"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__image_medium
-msgid "Medium-sized image of the pet animal. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -555,6 +622,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_ids
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_ids
 msgid "Messages"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__my_activity_date_deadline
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -573,6 +646,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__name
 msgid "Name"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Name:"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -607,7 +685,7 @@ msgstr ""
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_has_error_counter
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -629,12 +707,6 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,activity_state:0
-#: selection:veterinary.appointment,activity_state:0
-msgid "Overdue"
-msgstr ""
-
-#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__partner_id
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
 msgid "Owner"
@@ -651,8 +723,8 @@ msgid "Passport"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__state__draft
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
-#: selection:veterinary.appointment,state:0
 msgid "Pending"
 msgstr ""
 
@@ -707,11 +779,6 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
-msgid "Pet Data"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
 msgid "Pet Image"
 msgstr ""
 
@@ -741,9 +808,8 @@ msgid "Pet's name"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,activity_state:0
-#: selection:veterinary.appointment,activity_state:0
-msgid "Planned"
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Phone:"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -790,13 +856,13 @@ msgid "Sex"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__image_small
-msgid "Small-sized image"
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Sex:"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__image_small
-msgid "Small-sized image of the pet animal. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appintment_report_document
+msgid "Species:"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -807,7 +873,8 @@ msgstr ""
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__activity_state
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -824,28 +891,15 @@ msgid "Sub Type"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/pet_animal.py:74
-#: sql_constraint:pet.animal:0
+#: code:addons/pet_animal_care_management/models/pet_animal.py:0
 #, python-format
 msgid "The Pet Identification Code must be unique!"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/pet_animal_type.py:15
-#: sql_constraint:pet.animal.type:0
+#: code:addons/pet_animal_care_management/models/pet_animal_type.py:0
 #, python-format
 msgid "The name for this type already exists, must be unique!"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__image
-msgid "This field holds the image used as image for the pet animal, limited to 1024x1024px."
-msgstr ""
-
-#. module: pet_animal_care_management
-#: selection:pet.animal,activity_state:0
-#: selection:veterinary.appointment,activity_state:0
-msgid "Today"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -859,7 +913,13 @@ msgid "Type"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,sex:0
+#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__activity_exception_decoration
+#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__sex__unknow
 msgid "Unknow"
 msgstr ""
 
@@ -904,8 +964,8 @@ msgid "Veterinarian Appointments"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,privacy_visibility:0
-#: selection:veterinary.appointment,privacy_visibility:0
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__privacy_visibility__followers
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__privacy_visibility__followers
 msgid "Veterinarian and followers"
 msgstr ""
 
@@ -921,8 +981,8 @@ msgid "Veterinary Appointment"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: selection:pet.animal,privacy_visibility:0
-#: selection:veterinary.appointment,privacy_visibility:0
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__privacy_visibility__employees
+#: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__privacy_visibility__employees
 msgid "Visible by all employees"
 msgstr ""
 
@@ -948,14 +1008,13 @@ msgid "You can create a new veterinary appointment."
 msgstr ""
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/pet_animal.py:105
+#: code:addons/pet_animal_care_management/models/pet_animal.py:0
 #, python-format
 msgid "You cannot leave blank Pet Animal Code."
 msgstr ""
 
 #. module: pet_animal_care_management
-#: code:addons/pet_animal_care_management/models/veterinary_appointment.py:84
+#: code:addons/pet_animal_care_management/models/veterinary_appointment.py:0
 #, python-format
 msgid "You must set a datetime for the appointment."
 msgstr ""
-
