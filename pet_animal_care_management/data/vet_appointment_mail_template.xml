@@ -5,43 +5,122 @@
         <field name="name">Vet Appointment - Report</field>
         <field name="model_id" ref="pet_animal_care_management.model_veterinary_appointment"/>
         <field name="subject">${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})</field>
-        <field name="email_from">${(object.veterinarian_id.work_email and '%s &lt;%s&gt;' % (object.veterinarian_id.name, object.veterinarian_id.work_email) or '')|safe}</field>
+        <field name="email_from">${object.veterinarian_id.work_email |safe}</field>
         <field name="email_to">${(object.partner_id.email or '')|safe}</field>
         <field name="auto_delete" eval="True"/>
         <field name="report_template" ref="pet_animal_care_management.vet_appointment_report_action"/>
         <field name="report_name">${'('+object.name+')_'+(object.animal_id.name)}</field>
         <field name="lang">${object.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
-<div style="font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
-    <p>Hello ${object.partner_id.name or ''},</p>
-    <p>We inform you about the following Veterinary Appointment: </p>
-
-    <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
-       &nbsp;&nbsp;Code: <strong>${object.name}</strong><br />
-       &nbsp;&nbsp;Date: <strong>${format_tz(object.date_appointment, tz=object.partner_id.tz, format='%d/%m/%Y %H:%M:%S') or ''}</strong><br>
-       &nbsp;&nbsp;Your Veterinarian: <a href="mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}"><strong>${object.veterinarian_id.name}</strong></a>
-    </p>
-    <br/>
-    <p>If you have any question, do not hesitate to contact us.</p>
-    <p>Thank you for trusting in  ${object.company_id.name or 'us'}!</p>
-    % if object.veterinarian_id.user_id.signature:
-       ${object.veterinarian_id.user_id.signature | safe}
-    % else
-        <div style="padding:0px;margin:auto;">
-            <table cellspacing="0" cellpadding="0">
+        <field name="body_html" type="html">
+            <table style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;" cellspacing="0" cellpadding="0" border="0">
                 <tbody>
                     <tr>
-                        <td style="padding:10px 10px 10px 0px;font-size: 12px">
-                            <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 100px;" alt="${object.company_id.name}"/>
+                        <td align="center">
+                            <table style="padding:16px;background-color: white; color: #454748; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <!-- Head-->
+                                <tr>
+                                    <td style="min-width:590px;" align="center">
+                                        <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size:10px;">Your Pet</span><br/>
+                                                        <span style="font-size:20px;font-weight: bold;">
+                                                            ${object.animal_id.name}
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img src="/logo.png?company=${object.company_id.id}" style="padding:0px;margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td style="min-width:590px;" align="center">
+                                        <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-size:13px;" valign="top">
+                                                    <div>
+                                                        Hello ${object.partner_id.name or ''},<br/><br/>
+                                                        We inform you about the following Veterinary Appointment: <br/>
+                                                        <p style="border-left:1px solid #8e0000;margin-left:30px;padding:10px 0px 10px 10px;">
+                                                            Code: <strong>${object.name}</strong><br/>
+                                                            Date: <strong>${format_datetime(object.date_appointment, tz=object.partner_id.tz, dt_format='dd/MM/yyyy HH:mm')}</strong><br/>
+                                                            Your Veterinarian: <a href="mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}"><strong>${object.veterinarian_id.name}</strong></a>
+                                                        </p>
+                                                        Thanks,<br/>
+                                                        % if user.signature:
+                                                            <br/>
+                                                            ${user.signature | safe}
+                                                        % endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td style="min-width:590px;" align="center">
+                                        <table style="min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="middle" align="left">
+                                                    ${object.company_id.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="opacity:0.7;" valign="middle" align="left">
+                                                    ${object.company_id.phone}
+                                                    % if object.company_id.email
+                                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="color:#454748;">${object.company_id.email}</a>
+                                                    % endif
+                                                    % if object.company_id.website
+                                                        | <a href="'%s' % ${object.company_id.website}" style="color:#454748;">${object.company_id.website}</a>
+                                                    % endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="min-width:590px;" align="center">
+                            <table style="min-width:590px;background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center;font-size: 13px;">
+                                        No olvides visitar nuestro <a target="_blank" href="https://www.euskalmushing.com/blog/nuestro-blog-1" style="color:#875A7B;">Blog</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-    % endif
-    <br/>
-</div>
-        ]]></field>
+        </field>
     </record>
 
 
@@ -53,7 +132,7 @@
         <field name="email_to">${(object.partner_id.email or '')|safe}</field>
         <field name="auto_delete" eval="True"/>
         <field name="lang">${object.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
+        <field name="body_html" type="html">
 
 <div>
     % set date = object.date_appointment
@@ -64,22 +143,21 @@
     <table border="0" cellpadding="0" cellspacing="0"><tr>
         <td width="130px;">
             <div style="border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;">
-                ${format_tz(date, tz=object.partner_id.tz, format='%A') or ''}
+                Date
             </div>
-            <div style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
-                ${format_tz(date, tz=object.partner_id.tz, format='%d') or ''}
+            <div style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;padding: 0px 10px 0px 10px;">
+                ${format_datetime(date, tz=object.partner_id.tz, dt_format='dd/MM/yyyy')}
             </div>
             <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>
-                ${format_tz(date, tz=object.partner_id.tz, format='%B') or ''}
-                ${format_tz(date, tz=object.partner_id.tz, format='%Y') or ''}
+                Time
             </div>
             <div style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 40px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;">
-                ${format_tz(date, tz=object.partner_id.tz, format='%H:%M') or ''}
+                ${format_datetime(date, tz=object.partner_id.tz, dt_format='HH:mm')}
             </div>
         </td>
         <td width="20px;"/>
         <td style="padding-top: 5px;">
-            <p><strong>Details of the vet appointment</strong></p>
+            <p><strong>Details of the vet appointment</strong></p><br/>
             <ul>
                 % if object.history:
                     <li>History: ${object.history}</li>
@@ -116,8 +194,6 @@
         </table>
     </div>
 </div>
-
-        ]]></field>
+        </field>
     </record>
-
 </odoo>
