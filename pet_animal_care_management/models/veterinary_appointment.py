@@ -87,17 +87,13 @@ class VeterinaryAppointment(models.Model):
         if self.animal_id and not self.partner_id:
             self.partner_id = self.animal_id.partner_id
 
+    @api.model
     def create(self, vals):
-        # context: no_log, because subtype already handle this
-        context = dict(self.env.context, mail_create_nolog=True)
-
-        # Assign new code
         if vals.get('name', '/') == '/':
-            vals['name'] = \
-                self.env['ir.sequence'].next_by_code('veterinary.appointment')
-
-        va = super(VeterinaryAppointment, self.with_context(context)).create(vals)
-        return va
+            vals['name'] = (
+                self.env['ir.sequence'].next_by_code('veterinary.appointment') or "New"
+            )
+        return super(VeterinaryAppointment, self).create(vals)
 
     def action_vet_appointment_send(self):
         '''
@@ -111,16 +107,10 @@ class VeterinaryAppointment(models.Model):
                 'pet_animal_care_management', 'vet_appointment_email_template')[1]
         except ValueError:
             template_id = False
-        try:
-            compose_form_id = ir_model_data.get_object_reference(
-                'mail', 'email_compose_message_wizard_form')[1]
-        except ValueError:
-            compose_form_id = False
         lang = self.env.context.get('lang')
         template = template_id and self.env['mail.template'].browse(template_id)
-        if template and template.lang:
-            lang = template._render_template(
-                template.lang, 'veterinary.appointment', self.ids[0])
+        if template.lang:
+            lang = template._render_lang(self.ids)[self.id]
         ctx = {
             'default_model': 'veterinary.appointment',
             'default_res_id': self.ids[0],
@@ -135,8 +125,8 @@ class VeterinaryAppointment(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
-            'views': [(compose_form_id, 'form')],
-            'view_id': compose_form_id,
+            'views': [(False, 'form')],
+            'view_id': False,
             'target': 'new',
             'context': ctx,
         }
@@ -149,17 +139,10 @@ class VeterinaryAppointment(models.Model):
                 'pet_animal_care_management', 'vet_appointment_email_reminder')[1]
         except ValueError:
             template_id = False
-        try:
-            compose_form_id = ir_model_data.get_object_reference(
-                'mail', 'email_compose_message_wizard_form')[1]
-        except ValueError:
-            compose_form_id = False
-
         lang = self.env.context.get('lang')
         template = template_id and self.env['mail.template'].browse(template_id)
-        if template and template.lang:
-            lang = template._render_template(
-                template.lang, 'veterinary.appointment', self.ids[0])
+        if template.lang:
+            lang = template._render_lang(self.ids)[self.id]
         ctx = {
             'default_model': 'veterinary.appointment',
             'default_res_id': self.ids[0],
@@ -174,8 +157,8 @@ class VeterinaryAppointment(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
-            'views': [(compose_form_id, 'form')],
-            'view_id': compose_form_id,
+            'views': [(False, 'form')],
+            'view_id': False,
             'target': 'new',
             'context': ctx,
         }
