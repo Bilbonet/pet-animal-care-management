@@ -36,7 +36,7 @@
                     <button name="action_vet_appointment_send" type="object"
                             string=" Send Report" class="oe_highlight" icon="fa-envelope"
                             attrs="{'invisible': [('state', '==', 'draft')]}"/>
-                    <field name="state" widget="statusbar" clickable="True"/>
+                    <field name="state" widget="statusbar"  options="{'clickable': '1'}"/>
                 </header>
                 <sheet string="Vet Appointment">
                     <div class="oe_button_box" name="button_box"/>
