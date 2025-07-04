@@ -6,4 +6,4 @@ from odoo import fields, models
 class HrEmployeeBase(models.AbstractModel):
     _inherit = "hr.employee.base"
 
-    veterinarian = fields.Boolean(string='Is Veterinarian')
+    veterinarian = fields.Boolean(string="Is Veterinarian")

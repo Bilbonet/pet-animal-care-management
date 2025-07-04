@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <!-- ======================
          VETERINARY APPOINTMENT
@@ -9,17 +9,20 @@
         <field name="model">veterinary.appointment</field>
         <field name="priority">2</field>
         <field name="arch" type="xml">
-            <tree string="Vet Appointment" decoration-muted="active==False"
-                    decoration-bf="date_appointment == False and state == 'draft'"
-                    decoration-danger="date_appointment and (date_appointment&lt;current_date) and state == 'draft'"
-                    decoration-success="date_appointment and (date_appointment&gt;current_date) and state == 'draft'">
-                <field name="name"/>
-                <field name="date_appointment"/>
-                <field name='animal_id'/>
-                <field name='veterinarian_id'/>
-                <field name='partner_id'/>
-                <field name='state'/>
-                <field name="active" invisible="1"/>
+            <tree
+                string="Vet Appointment"
+                decoration-muted="active==False"
+                decoration-bf="date_appointment == False and state == 'draft'"
+                decoration-danger="date_appointment and (date_appointment&lt;current_date) and state == 'draft'"
+                decoration-success="date_appointment and (date_appointment&gt;current_date) and state == 'draft'"
+            >
+                <field name="name" />
+                <field name="date_appointment" />
+                <field name='animal_id' />
+                <field name='veterinarian_id' />
+                <field name='partner_id' />
+                <field name='state' />
+                <field name="active" invisible="1" />
             </tree>
         </field>
     </record>
@@ -30,57 +33,93 @@
         <field name="arch" type="xml">
             <form string="Vet Appointment">
                 <header>
-                    <button name="send_vet_appointment_reminder" type="object"
-                            string=" Send Reminder" class="btn-warning" icon="fa-calendar"
-                            attrs="{'invisible': ['|',('state', '!=', 'draft'), ('date_appointment', '==', False)]}"/>
-                    <button name="action_vet_appointment_send" type="object"
-                            string=" Send Report" class="oe_highlight" icon="fa-envelope"
-                            attrs="{'invisible': [('state', '==', 'draft')]}"/>
-                    <field name="state" widget="statusbar"  options="{'clickable': '1'}"/>
+                    <button
+                        name="send_vet_appointment_reminder"
+                        type="object"
+                        string=" Send Reminder"
+                        class="btn-warning"
+                        icon="fa-calendar"
+                        attrs="{'invisible': ['|',('state', '!=', 'draft'), ('date_appointment', '==', False)]}"
+                    />
+                    <button
+                        name="action_vet_appointment_send"
+                        type="object"
+                        string=" Send Report"
+                        class="oe_highlight"
+                        icon="fa-envelope"
+                        attrs="{'invisible': [('state', '==', 'draft')]}"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        options="{'clickable': '1'}"
+                    />
                 </header>
                 <sheet string="Vet Appointment">
-                    <div class="oe_button_box" name="button_box"/>
-                    <field name="active" invisible="1"/>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_button_box" name="button_box" />
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div class="row oe_title">
                         <div class="mr-3">
-                            <h1><field name="name"/></h1>
+                            <h1><field name="name" /></h1>
                         </div>
                         <div>
-                            <h1><field name="animal_id" placeholder="Pet Animal..."
-                                        attrs="{'required': [('partner_id', '=', False)]}"/></h1>
+                            <h1><field
+                                    name="animal_id"
+                                    placeholder="Pet Animal..."
+                                    attrs="{'required': [('partner_id', '=', False)]}"
+                                /></h1>
                         </div>
                     </div>
                     <div class="o_row">
-                        <field name="partner_id" placeholder="Customer..." domain="[]"
-                               options="{'no_create': True}" 
-                               attrs="{'required': [('animal_id', '=', False)]}"/>
+                        <field
+                            name="partner_id"
+                            placeholder="Customer..."
+                            domain="[]"
+                            options="{'no_create': True}"
+                            attrs="{'required': [('animal_id', '=', False)]}"
+                        />
                     </div>
 
                     <group>
                         <group string='Clinic History'>
-                            <field name='history'/>
-                            <field name='diagnostic' style="color:#A85A5A;"/>
-                            <field name='treatment' style="color:#248D90;"/>
+                            <field name='history' />
+                            <field name='diagnostic' style="color:#A85A5A;" />
+                            <field name='treatment' style="color:#248D90;" />
                         </group>
                         <group string='Appointment Data'>
-                            <field name='date_appointment'/>
-                            <field name='veterinarian_id' options='{"no_open": True, "no_create": True}'
-                                   placeholder="Veterinarian..."
-                                   domain="[('veterinarian','=',True)]"/>
-                            <field name="privacy_visibility" widget="radio"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name='date_appointment' />
+                            <field
+                                name='veterinarian_id'
+                                options='{"no_open": True, "no_create": True}'
+                                placeholder="Veterinarian..."
+                                domain="[('veterinarian','=',True)]"
+                            />
+                            <field name="privacy_visibility" widget="radio" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
 
-                            <separator string="Weight" colspan="2"/>
-                            <label for="animal_weight" string="Kgs"/>
-                            <field name='animal_weight' nolabel="1"/>
+                            <separator string="Weight" colspan="2" />
+                            <label for="animal_weight" string="Kgs" />
+                            <field name='animal_weight' nolabel="1" />
                         </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
         </field>
@@ -91,23 +130,45 @@
         <field name="model">veterinary.appointment</field>
         <field name="arch" type="xml">
             <search string="Search Vet Appointment">
-                <field name="animal_id" string="Pet Animal"/>
-                <field name="name" string="Vet Appointment"/>
-                <filter string="My Appointments" name="my_appointments" domain="[('veterinarian_id.user_id','=',uid)]"/>
-                <separator/>
-                <filter string="Pending" name="pending" domain="[('state','=','draft')]"/>
-                <separator/>
-                <filter string="For Today" name="today"
-                        domain="[('date_appointment','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
-                                ('date_appointment','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
-                <filter name="week" string="For This Week"
-                        domain="[
+                <field name="animal_id" string="Pet Animal" />
+                <field name="name" string="Vet Appointment" />
+                <filter
+                    string="My Appointments"
+                    name="my_appointments"
+                    domain="[('veterinarian_id.user_id','=',uid)]"
+                />
+                <separator />
+                <filter
+                    string="Pending"
+                    name="pending"
+                    domain="[('state','=','draft')]"
+                />
+                <separator />
+                <filter
+                    string="For Today"
+                    name="today"
+                    domain="[('date_appointment','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                                ('date_appointment','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                />
+                <filter
+                    name="week"
+                    string="For This Week"
+                    domain="[
                                 '&amp;',
                                 ('date_appointment', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
-                                ('date_appointment', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),]"/>
-                <filter string="For This Month" name="this_month" domain="[('date_appointment','&gt;=', time.strftime('%Y-%m-01'))]"/>
-                <separator/>
-                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                                ('date_appointment', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),]"
+                />
+                <filter
+                    string="For This Month"
+                    name="this_month"
+                    domain="[('date_appointment','&gt;=', time.strftime('%Y-%m-01'))]"
+                />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
             </search>
         </field>
     </record>
@@ -116,8 +177,12 @@
         <field name="name">veterinary appointment calendar</field>
         <field name="model">veterinary.appointment</field>
         <field name="arch" type="xml">
-            <calendar string="Vet Appointment" date_start="date_appointment" color="veterinarian_id">
-                <field name="animal_id"/>
+            <calendar
+                string="Vet Appointment"
+                date_start="date_appointment"
+                color="veterinarian_id"
+            >
+                <field name="animal_id" />
             </calendar>
         </field>
     </record>
@@ -127,7 +192,7 @@
         <field name="name">Veterinary Appointment</field>
         <field name="res_model">veterinary.appointment</field>
         <field name="view_mode">tree,form,calendar</field>
-        <field name="search_view_id" ref="vet_appointment_filter_view"/>
+        <field name="search_view_id" ref="vet_appointment_filter_view" />
         <field name="context">{'search_default_my_appointments': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -140,9 +205,11 @@
     </record>
 
     <!-- ==== MENUS ===== -->
-    <menuitem id="vet_appointment_main_menu"
-              name="Vet Appointment"
-              parent="pacm_root_menu"
-              action="vet_appointment_action_from_menu"
-              sequence="3"/>
+    <menuitem
+        id="vet_appointment_main_menu"
+        name="Vet Appointment"
+        parent="pacm_root_menu"
+        action="vet_appointment_action_from_menu"
+        sequence="3"
+    />
 </odoo>
