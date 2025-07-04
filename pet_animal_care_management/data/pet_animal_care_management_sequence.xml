@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo noupdate="1">
     <!-- Pet Animal Code Number Sequence -->
     <record id="pet_animal_seq_number" model="ir.sequence">

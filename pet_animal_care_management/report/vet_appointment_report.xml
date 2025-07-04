@@ -1,12 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
     <record id="vet_appointment_report_action" model="ir.actions.report">
         <field name="name">Print Vet Appointment</field>
         <field name="model">veterinary.appointment</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">pet_animal_care_management.vet_appintment_report_document</field>
-        <field name="report_file">pet_animal_care_management.vet_appintment_report_document</field>
-        <field name="print_report_name">'(%s)_%s-%s' % (object.name, object.animal_id.name.replace(' ', '_'), object.animal_id.partner_id.name.replace(' ', '_') or '')</field>
+        <field
+            name="report_name"
+        >pet_animal_care_management.vet_appintment_report_document</field>
+        <field
+            name="report_file"
+        >pet_animal_care_management.vet_appintment_report_document</field>
+        <field
+            name="print_report_name"
+        >'(%s)_%s-%s' % (object.name, object.animal_id.name.replace(' ', '_'), object.animal_id.partner_id.name.replace(' ', '_') or '')</field>
     </record>
 
     <template id="vet_appintment_report_document">
@@ -17,34 +23,54 @@
 
                         <div class="row" name="head_report">
                             <div t-if="doc.animal_id.image_128" class="col-auto">
-                                <img t-att-src="image_data_uri(doc.animal_id.image_128)" alt="Pet Image" style="max-height: 128px;"/>
+                                <img
+                                    t-att-src="image_data_uri(doc.animal_id.image_128)"
+                                    alt="Pet Image"
+                                    style="max-height: 128px;"
+                                />
                             </div>
                             <div class="col-auto">
                                 <h5>
-                                    Name: <span t-field="doc.animal_id.name"/>
+                                    Name: <span t-field="doc.animal_id.name" />
                                 </h5>
                                 <ul class="list-unstyled">
                                     <li>
-                                        Species: 
-                                        <b><span t-field="doc.animal_id.pet_type_id"/>
+                                        Species:
+                                        <b><span t-field="doc.animal_id.pet_type_id" />
                                         <span t-if="doc.animal_id.pet_sub_type_id">
-                                            (<span t-field="doc.animal_id.pet_sub_type_id"/>)
+                                            (<span
+                                                    t-field="doc.animal_id.pet_sub_type_id"
+                                                />)
                                         </span></b>
                                     </li>
-                                    <li>Sex: <b><span t-field="doc.animal_id.sex"/></b></li>
-                                    <li>Chip/Code: <b><span t-field="doc.animal_id.pet_code"/></b></li>
-                                    <li>Birth Date: <b><span t-field="doc.animal_id.pet_birth_date"/></b></li>
+                                    <li>Sex: <b><span
+                                                t-field="doc.animal_id.sex"
+                                            /></b></li>
+                                    <li>Chip/Code: <b><span
+                                                t-field="doc.animal_id.pet_code"
+                                            /></b></li>
+                                    <li>Birth Date: <b><span
+                                                t-field="doc.animal_id.pet_birth_date"
+                                            /></b></li>
                                     <li t-if="doc.animal_weight">
-                                        <span>Weight: <b><span t-field="doc.animal_weight"/> Kgs</b></span>
+                                        <span>Weight: <b><span
+                                                    t-field="doc.animal_weight"
+                                                /> Kgs</b></span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-auto">
                                 <h5>Owner Data</h5>
                                 <ul class="list-unstyled">
-                                    <li>Name: <span t-field="doc.partner_id.name"/></li>
-                                    <li>Phone: <span t-field="doc.partner_id.phone"/></li>
-                                    <li>Email: <span t-field="doc.partner_id.email"/></li>
+                                    <li>Name: <span
+                                            t-field="doc.partner_id.name"
+                                        /></li>
+                                    <li>Phone: <span
+                                            t-field="doc.partner_id.phone"
+                                        /></li>
+                                    <li>Email: <span
+                                            t-field="doc.partner_id.email"
+                                        /></li>
                                 </ul>
                             </div>
                         </div>
@@ -56,15 +82,15 @@
                                     <tr>
                                         <th name="th_description">
                                             <small>Vet Appointment:</small>
-                                            <p t-field="doc.name"/>
+                                            <p t-field="doc.name" />
                                         </th>
-                                        <th name="th_description" >
+                                        <th name="th_description">
                                             <small>Date:</small>
-                                            <p t-field="doc.date_appointment"/>
+                                            <p t-field="doc.date_appointment" />
                                         </th>
                                         <th name="th_description">
                                             <small>Veterinarian:</small>
-                                            <p t-field="doc.veterinarian_id"/>
+                                            <p t-field="doc.veterinarian_id" />
                                         </th>
                                     </tr>
                                 </thead>
@@ -73,16 +99,24 @@
 
                         <div name="body_report">
                             <div class="mt-2 mb-2" t-if="doc.history">
-                                <b>History:</b><br/>
-                                <span t-field="doc.history"/>
+                                <b>History:</b><br />
+                                <span t-field="doc.history" />
                             </div>
-                            <div class="mt-2 mb-2" t-if="doc.diagnostic" style="color:#A85A5A;">
-                                <b>Diagnostic:</b><br/>
-                                <span t-field="doc.diagnostic"/>
+                            <div
+                                class="mt-2 mb-2"
+                                t-if="doc.diagnostic"
+                                style="color:#A85A5A;"
+                            >
+                                <b>Diagnostic:</b><br />
+                                <span t-field="doc.diagnostic" />
                             </div>
-                            <div class="mt-1" t-if="doc.treatment" style="color:#248D90;">
-                                <b>Treatment:</b><br/>
-                                <span t-field="doc.treatment"/>
+                            <div
+                                class="mt-1"
+                                t-if="doc.treatment"
+                                style="color:#248D90;"
+                            >
+                                <b>Treatment:</b><br />
+                                <span t-field="doc.treatment" />
                             </div>
                          </div>
 
