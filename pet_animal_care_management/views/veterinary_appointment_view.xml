@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <odoo>
-    <!-- ======================
-         VETERINARY APPOINTMENT
-    ======================= -->
+    <!-- =====================
+        VETERINARY APPOINTMENT
+    ====================== -->
     <!-- ==== VIEWS ==== -->
     <record id="vet_appointment_tree_view" model="ir.ui.view">
         <field name="name">veterinary appointment tree</field>
@@ -84,7 +84,6 @@
                             attrs="{'required': [('animal_id', '=', False)]}"
                         />
                     </div>
-
                     <group>
                         <group string='Clinic History'>
                             <field name='history' />
@@ -104,7 +103,6 @@
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
-
                             <separator string="Weight" colspan="2" />
                             <label for="animal_weight" string="Kgs" />
                             <field name='animal_weight' nolabel="1" />
@@ -146,16 +144,19 @@
                 <filter
                     string="For Today"
                     name="today"
-                    domain="[('date_appointment','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
-                                ('date_appointment','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"
+                    domain="[
+                        ('date_appointment','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                        ('date_appointment','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))),
+                    ]"
                 />
                 <filter
                     name="week"
                     string="For This Week"
                     domain="[
-                                '&amp;',
-                                ('date_appointment', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
-                                ('date_appointment', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),]"
+                        '&amp;',
+                        ('date_appointment', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                        ('date_appointment', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
+                    ]"
                 />
                 <filter
                     string="For This Month"

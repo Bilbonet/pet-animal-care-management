@@ -232,6 +232,7 @@
                                         type="object"
                                         name="view_vet_appointment"
                                         icon="fa-search-plus"
+                                        title="View Appointment"
                                         class="btn btn-link"
                                     />
                                 </tree>
@@ -324,7 +325,7 @@
          VETERINARY APPOINTMENT FROM PET FORM
     ===================================== -->
     <record id="vet_appointment_form_from_pet_view" model="ir.ui.view">
-        <field name="name">veterinary.appointment form</field>
+        <field name="name">veterinary.appointment.form from pet form</field>
         <field name="model">veterinary.appointment</field>
         <field name="arch" type="xml">
             <form string="Vet Appointment">

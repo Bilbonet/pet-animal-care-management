@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-20 17:10+0000\n"
-"PO-Revision-Date: 2022-04-20 17:10+0000\n"
+"POT-Creation-Date: 2025-07-06 08:29+0000\n"
+"PO-Revision-Date: 2025-07-06 08:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pet_animal_care_management
-#: model:mail.template,report_name:pet_animal_care_management.vet_appointment_email_template
-msgid "${'('+object.name+')_'+(object.animal_id.name)}"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_reminder
-msgid ""
-"${object.company_id.name} Vet Appointment Reminder (${object.name or 'n/a'})"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
-msgid ""
-"${object.company_id.name} Vet Appointment Report (${object.name or 'n/a'})"
-msgstr ""
-
-#. module: pet_animal_care_management
 #: model:ir.actions.report,print_report_name:pet_animal_care_management.vet_appointment_report_action
 msgid ""
 "'(%s)_%s-%s' % (object.name, object.animal_id.name.replace(' ', '_'), "
 "object.animal_id.partner_id.name.replace(' ', '_') or '')"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,report_name:pet_animal_care_management.vet_appointment_email_template
+msgid "({{ object.name }})_{{ object.animal_id.name }}"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -58,9 +46,8 @@ msgstr ""
 #: model:mail.template,body_html:pet_animal_care_management.vet_appointment_email_reminder
 msgid ""
 "<div>\n"
-"    % set date = object.date_appointment\n"
 "    <p>\n"
-"        Hello ${object.partner_id.name or ''},<br/><br/>\n"
+"        Hello <t t-out=\"object.partner_id.name or ''\">Customer</t>,<br><br>\n"
 "        This is a reminder for the below veterinary appointment :\n"
 "    </p>\n"
 "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
@@ -69,48 +56,48 @@ msgid ""
 "                Date\n"
 "            </div>\n"
 "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;padding: 0px 10px 0px 10px;\">\n"
-"                ${format_datetime(date, tz=object.partner_id.tz, dt_format='dd/MM/yyyy')}\n"
+"                <t t-out=\"format_datetime(object.date_appointment, tz=object.partner_id.tz, dt_format='dd/MM/yyyy') or ''\">01/01/2025</t>\n"
 "            </div>\n"
 "            <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
 "                Time\n"
 "            </div>\n"
 "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 40px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${format_datetime(date, tz=object.partner_id.tz, dt_format='HH:mm')}\n"
+"                <t t-out=\"format_datetime(object.date_appointment, tz=object.partner_id.tz, dt_format='HH:mm') or ''\">10:00</t>\n"
 "            </div>\n"
 "        </td>\n"
-"        <td width=\"20px;\"/>\n"
+"        <td width=\"20px;\"></td>\n"
 "        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Details of the vet appointment</strong></p><br/>\n"
+"            <p><strong>Details of the vet appointment</strong></p><br>\n"
 "            <ul>\n"
-"                % if object.history:\n"
-"                    <li>History: ${object.history}</li>\n"
-"                % endif\n"
-"                % if object.diagnostic:\n"
-"                    <li>Diagnostic: ${object.diagnostic}</li>\n"
-"                % endif\n"
-"                % if object.treatment:\n"
-"                    <li>Treatment: ${object.treatment}</li>\n"
-"                % endif\n"
-"                % if object.veterinarian_id:\n"
-"                <li>Veterinarian: <strong>${object.veterinarian_id.name}</strong>\n"
+"                <t t-if=\"object.history\">\n"
+"                    <li>History: <t t-out=\"object.history\"></t></li>\n"
+"                </t>\n"
+"                <t t-if=\"object.diagnostic\">\n"
+"                    <li>Diagnostic: <t t-out=\"object.diagnostic\"></t></li>\n"
+"                </t>\n"
+"                <t t-if=\"object.treatment\">\n"
+"                    <li>Treatment: <t t-out=\"object.treatment\"></t></li>\n"
+"                </t>\n"
+"                <t t-if=\"object.veterinarian_id\">\n"
+"                    <li>Veterinarian: <strong><t t-out=\"object.veterinarian_id.name\"></t></strong>\n"
 "                        <ul>\n"
-"                            <li>Phone: ${object.veterinarian_id.work_phone or ''}</li>\n"
-"                            <li>Email: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\">${object.veterinarian_id.work_email}</a></li>\n"
+"                            <li>Phone: <t t-out=\"object.veterinarian_id.work_phone or ''\"></t></li>\n"
+"                            <li>Email: <a t-att-href=\"'mailto:%s?subject=Vet Appointment %s' % (object.veterinarian_id.work_email or '', object.name or '')\"><t t-out=\"object.veterinarian_id.work_email or ''\"></t></a></li>\n"
 "                        </ul>\n"
 "                    </li>\n"
-"                % endif\n"
+"                </t>\n"
 "            </ul>\n"
 "        </td>\n"
 "    </tr></table>\n"
-"    <br/>\n"
+"    <br>\n"
 "    Thank you,\n"
-"    <br/>\n"
+"    <br>\n"
 "    <div style=\"padding:0px;margin:auto;\">\n"
 "        <table cellspacing=\"0\" cellpadding=\"0\">\n"
 "            <tbody>\n"
 "                <tr>\n"
 "                    <td style=\"padding:10px 10px 10px 0px;font-size: 12px\">\n"
-"                        <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" alt=\"${object.company_id.name}\"/>\n"
+"                        <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" t-att-alt=\"object.company_id.name or ''\">\n"
 "                    </td>\n"
 "                </tr>\n"
 "            </tbody>\n"
@@ -168,104 +155,101 @@ msgid ""
 "                    <tr>\n"
 "                        <td align=\"center\">\n"
 "                            <table style=\"padding:16px;background-color: white; color: #454748; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
-"                            <tbody>\n"
-"                                <!-- Head-->\n"
-"                                <tr>\n"
-"                                    <td style=\"min-width:590px;\" align=\"center\">\n"
-"                                        <table style=\"min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
-"                                            <tbody>\n"
-"                                                <tr>\n"
-"                                                    <td valign=\"middle\">\n"
-"                                                        <span style=\"font-size:10px;\">Your Pet</span><br/>\n"
-"                                                        <span style=\"font-size:20px;font-weight: bold;\">\n"
-"                                                            ${object.animal_id.name}\n"
-"                                                        </span>\n"
-"                                                    </td>\n"
-"                                                    <td valign=\"middle\" align=\"right\">\n"
-"                                                        <img src=\"/logo.png?company=${object.company_id.id}\" style=\"padding:0px;margin: 0px; height: auto; width: 80px;\" alt=\"${object.company_id.name}\"/>\n"
-"                                                    </td>\n"
-"                                                </tr>\n"
-"                                                <tr>\n"
-"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                                                        <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\" width=\"100%\"/>\n"
-"                                                    </td>\n"
-"                                                </tr>\n"
-"                                            </tbody>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                                \n"
-"                                <tr>\n"
-"                                    <td style=\"min-width:590px;\" align=\"center\">\n"
-"                                        <table style=\"min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
-"                                        <tbody>\n"
-"                                            <tr>\n"
-"                                                <td style=\"font-size:13px;\" valign=\"top\">\n"
-"                                                    <div>\n"
-"                                                        Hello ${object.partner_id.name or ''},<br/><br/>\n"
-"                                                        We inform you about the following Veterinary Appointment: <br/>\n"
-"                                                        <p style=\"border-left:1px solid #8e0000;margin-left:30px;padding:10px 0px 10px 10px;\">\n"
-"                                                            Code: <strong>${object.name}</strong><br/>\n"
-"                                                            Date: <strong>${format_datetime(object.date_appointment, tz=object.partner_id.tz, dt_format='dd/MM/yyyy HH:mm')}</strong><br/>\n"
-"                                                            Your Veterinarian: <a href=\"mailto:${object.veterinarian_id.work_email or ''}?subject=Vet Appointment%20${object.name}\"><strong>${object.veterinarian_id.name}</strong></a>\n"
-"                                                        </p>\n"
-"                                                        Thanks,<br/>\n"
-"                                                        % if user.signature:\n"
-"                                                            <br/>\n"
-"                                                            ${user.signature | safe}\n"
-"                                                        % endif\n"
-"                                                    </div>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td style=\"text-align:center;\">\n"
-"                                                    <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\" width=\"100%\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </tbody>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                                \n"
-"                                <tr>\n"
-"                                    <td style=\"min-width:590px;\" align=\"center\">\n"
-"                                        <table style=\"min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
-"                                        <tbody>\n"
-"                                            <tr>\n"
-"                                                <td valign=\"middle\" align=\"left\">\n"
-"                                                    ${object.company_id.name}\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td style=\"opacity:0.7;\" valign=\"middle\" align=\"left\">\n"
-"                                                    ${object.company_id.phone}\n"
-"                                                    % if object.company_id.email\n"
-"                                                        | <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"color:#454748;\">${object.company_id.email}</a>\n"
-"                                                    % endif\n"
-"                                                    % if object.company_id.website\n"
-"                                                        | <a href=\"'%s' % ${object.company_id.website}\" style=\"color:#454748;\">${object.company_id.website}</a>\n"
-"                                                    % endif\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </tbody>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                            </tbody>\n"
+"                                <tbody>\n"
+"                                    <!-- Head-->\n"
+"                                    <tr>\n"
+"                                        <td style=\"min-width:590px;\" align=\"center\">\n"
+"                                            <table style=\"min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                                <tbody>\n"
+"                                                    <tr>\n"
+"                                                        <td valign=\"middle\">\n"
+"                                                            <span style=\"font-size:10px;\">Your Pet</span><br>\n"
+"                                                            <span style=\"font-size:20px;font-weight: bold;\">\n"
+"                                                                <t t-out=\"object.animal_id.name or ''\">Pet Name</t>\n"
+"                                                            </span>\n"
+"                                                        </td>\n"
+"                                                        <td valign=\"middle\" align=\"right\">\n"
+"                                                            <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 100px;\" t-att-alt=\"object.company_id.name or ''\">\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                    <tr>\n"
+"                                                        <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                            <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\" width=\"100%\">\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                </tbody>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td style=\"min-width:590px;\" align=\"center\">\n"
+"                                            <table style=\"min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                                <tbody>\n"
+"                                                    <tr>\n"
+"                                                        <td style=\"font-size:13px;\" valign=\"top\">\n"
+"                                                            <div>\n"
+"                                                                Hello <t t-out=\"object.partner_id.name or ''\">Customer</t>,<br><br>\n"
+"                                                                We inform you about the following Veterinary Appointment: <br>\n"
+"                                                                <p style=\"border-left:1px solid #8e0000;margin-left:30px;padding:10px 0px 10px 10px;\">\n"
+"                                                                    Code: <strong><t t-out=\"object.name or ''\">APPT001</t></strong><br>\n"
+"                                                                    Date: <strong><t t-out=\"format_datetime(object.date_appointment, tz=object.partner_id.tz, dt_format='dd/MM/yyyy HH:mm') or ''\">01/01/2025 10:00</t></strong><br>\n"
+"                                                                    Your Veterinarian: <a t-if=\"object.veterinarian_id.work_email\" t-att-href=\"'mailto:%s?subject=Vet Appointment %s' % (object.veterinarian_id.work_email or '', object.name or '')\"><strong><t t-out=\"object.veterinarian_id.name or ''\">Vet Name</t></strong></a>\n"
+"                                                                </p>\n"
+"                                                                Thanks,<br>\n"
+"                                                                <t t-if=\"not is_html_empty(user.signature)\">\n"
+"                                                                    <br>\n"
+"                                                                    <t t-out=\"user.signature or ''\">--<br>Signature</t>\n"
+"                                                                </t>\n"
+"                                                            </div>\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                    <tr>\n"
+"                                                        <td style=\"text-align:center;\">\n"
+"                                                            <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\" width=\"100%\">\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                </tbody>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td style=\"min-width:590px;\" align=\"center\">\n"
+"                                            <table style=\"min-width:590px;background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                                <tbody>\n"
+"                                                    <tr>\n"
+"                                                        <td valign=\"middle\" align=\"left\">\n"
+"                                                            <t t-out=\"object.company_id.name or ''\">Company Name</t>\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                    <tr>\n"
+"                                                        <td style=\"opacity:0.7;\" valign=\"middle\" align=\"left\">\n"
+"                                                            <t t-out=\"object.company_id.phone or ''\">123456789</t>\n"
+"                                                            <t t-if=\"object.company_id.email\">\n"
+"                                                                | <a t-att-href=\"'mailto:%s' % (object.company_id.email or '')\" style=\"color:#454748;\"><t t-out=\"object.company_id.email or ''\">company@email.com</t></a>\n"
+"                                                            </t>\n"
+"                                                            <t t-if=\"object.company_id.website\">\n"
+"                                                                | <a t-att-href=\"object.company_id.website\" style=\"color:#454748;\"><t t-out=\"object.company_id.website or ''\">website.com</t></a>\n"
+"                                                            </t>\n"
+"                                                        </td>\n"
+"                                                    </tr>\n"
+"                                                </tbody>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
 "                            </table>\n"
 "                        </td>\n"
 "                    </tr>\n"
-"\n"
 "                    <tr>\n"
 "                        <td style=\"min-width:590px;\" align=\"center\">\n"
 "                            <table style=\"min-width:590px;background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
-"                            <tbody>\n"
-"                                <tr>\n"
-"                                    <td style=\"text-align:center;font-size: 13px;\">\n"
-"                                        No olvides visitar nuestro <a target=\"_blank\" href=\"https://www.euskalmushing.com/blog/nuestro-blog-1\" style=\"color:#875A7B;\">Blog</a>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                            </tbody>\n"
+"                                <tbody>\n"
+"                                    <tr>\n"
+"                                        <td style=\"text-align:center;font-size: 13px;\">\n"
+"                                            No olvides visitar nuestro <a target=\"_blank\" href=\"https://www.euskalmushing.com/blog/nuestro-blog-1\" style=\"color:#875A7B;\">Blog</a>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
 "                            </table>\n"
 "                        </td>\n"
 "                    </tr>\n"
@@ -428,11 +412,6 @@ msgid "Customer..."
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__pet_birth_date
-msgid "Date Of Birth"
-msgstr ""
-
-#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__date_appointment
 msgid "Date of Appointment"
 msgstr ""
@@ -443,7 +422,6 @@ msgid "Diagnostic"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type__display_name
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__display_name
@@ -454,16 +432,6 @@ msgstr ""
 #. module: pet_animal_care_management
 #: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__state__done
 msgid "Done"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_pet_animal_unique_code
-msgid "El código de identificación debe ser único!"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_type_pet_animal_type_unique_code
-msgid "El nombre de este Tipo ya existe, debe ser unico!"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -480,12 +448,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_follower_ids
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_channel_ids
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -526,6 +488,12 @@ msgid "Group By"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__has_message
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__privacy_visibility
 msgid ""
 "Holds visibility of the pet animal:\n"
@@ -542,7 +510,6 @@ msgid ""
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type__id
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type__id
@@ -564,9 +531,7 @@ msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_needaction
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_needaction
-#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -648,7 +613,6 @@ msgid "Kgs"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_hr_employee_base____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type____last_update
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_type____last_update
@@ -730,6 +694,12 @@ msgid "Name:"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_calendar_event_id
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__activity_date_deadline
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__activity_date_deadline
 msgid "Next Activity Deadline"
@@ -767,19 +737,13 @@ msgstr ""
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_needaction_counter
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_has_error_counter
 #: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,help:pet_animal_care_management.field_pet_animal__message_unread_counter
-#: model:ir.model.fields,help:pet_animal_care_management.field_veterinary_appointment__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -809,7 +773,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__animal_id
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_form_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_tree_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
 msgid "Pet Animal"
 msgstr ""
@@ -849,6 +812,11 @@ msgid "Pet Animal..."
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__pet_birth_date
+msgid "Pet Birth Date"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__pet_code
 msgid "Pet Chip/Code"
 msgstr ""
@@ -867,14 +835,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:pet_animal_care_management.pet_sub_type_action_from_menu
 #: model:ir.ui.menu,name:pet_animal_care_management.pet_animal_sub_type_menu
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_sub_type_form_view
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_sub_type_tree_view
 msgid "Pet Sub Type"
 msgstr ""
 
 #. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal_sub_type__pet_type_id
 #: model:ir.ui.menu,name:pet_animal_care_management.pet_animal_type_menu
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_type_tree_view
 msgid "Pet Type"
 msgstr ""
 
@@ -926,6 +892,20 @@ msgid "Send Report"
 msgstr ""
 
 #. module: pet_animal_care_management
+#. odoo-python
+#: code:addons/pet_animal_care_management/models/veterinary_appointment.py:0
+#, python-format
+msgid "Send Vet Appointmen Reminder"
+msgstr ""
+
+#. module: pet_animal_care_management
+#. odoo-python
+#: code:addons/pet_animal_care_management/models/veterinary_appointment.py:0
+#, python-format
+msgid "Send Vet Appointmen Report"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__sex
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_filter_view
 msgid "Sex"
@@ -967,13 +947,17 @@ msgid "Sub Type"
 msgstr ""
 
 #. module: pet_animal_care_management
+#. odoo-python
 #: code:addons/pet_animal_care_management/models/pet_animal.py:0
+#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_pet_animal_unique_code
 #, python-format
 msgid "The Pet Identification Code must be unique!"
 msgstr ""
 
 #. module: pet_animal_care_management
+#. odoo-python
 #: code:addons/pet_animal_care_management/models/pet_animal_type.py:0
+#: model:ir.model.constraint,message:pet_animal_care_management.constraint_pet_animal_type_pet_animal_type_unique_code
 #, python-format
 msgid "The name for this type already exists, must be unique!"
 msgstr ""
@@ -1000,16 +984,8 @@ msgid "Unknow"
 msgstr ""
 
 #. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_unread
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_unread
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_kanban_view
 msgid "Unread Messages"
-msgstr ""
-
-#. module: pet_animal_care_management
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_pet_animal__message_unread_counter
-#: model:ir.model.fields,field_description:pet_animal_care_management.field_veterinary_appointment__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -1023,8 +999,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_filter_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_from_pet_view
 #: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_form_view
-#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.vet_appointment_tree_view
 msgid "Vet Appointment"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,name:pet_animal_care_management.vet_appointment_email_template
+msgid "Vet Appointment - Report"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,name:pet_animal_care_management.vet_appointment_email_reminder
+msgid "Vet Appointment: Reminder"
 msgstr ""
 
 #. module: pet_animal_care_management
@@ -1057,6 +1042,11 @@ msgid "Veterinary Appointment"
 msgstr ""
 
 #. module: pet_animal_care_management
+#: model_terms:ir.ui.view,arch_db:pet_animal_care_management.pet_animal_form_view
+msgid "View Appointment"
+msgstr ""
+
+#. module: pet_animal_care_management
 #: model:ir.model.fields.selection,name:pet_animal_care_management.selection__pet_animal__privacy_visibility__employees
 #: model:ir.model.fields.selection,name:pet_animal_care_management.selection__veterinary_appointment__privacy_visibility__employees
 msgid "Visible by all employees"
@@ -1084,13 +1074,29 @@ msgid "You can create a new veterinary appointment."
 msgstr ""
 
 #. module: pet_animal_care_management
+#. odoo-python
 #: code:addons/pet_animal_care_management/models/pet_animal.py:0
 #, python-format
 msgid "You cannot leave blank Pet Animal Code."
 msgstr ""
 
 #. module: pet_animal_care_management
+#. odoo-python
 #: code:addons/pet_animal_care_management/models/veterinary_appointment.py:0
 #, python-format
 msgid "You must set a datetime for the appointment."
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_reminder
+msgid ""
+"{{ object.company_id.name }} Vet Appointment Reminder ({{ object.name or "
+"'n/a' }})"
+msgstr ""
+
+#. module: pet_animal_care_management
+#: model:mail.template,subject:pet_animal_care_management.vet_appointment_email_template
+msgid ""
+"{{ object.company_id.name }} Vet Appointment Report ({{ object.name or 'n/a'"
+" }})"
 msgstr ""
