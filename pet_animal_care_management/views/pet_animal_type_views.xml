@@ -8,7 +8,7 @@
         <field name="name">pet.animal.type tree view</field>
         <field name="model">pet.animal.type</field>
         <field name="arch" type="xml">
-            <tree string="Pet Type">
+            <tree>
                 <field name='name' />
             </tree>
         </field>
@@ -60,7 +60,7 @@
         <field name="name">pet.animal.sub_type tree view</field>
         <field name="model">pet.animal.sub_type</field>
         <field name="arch" type="xml">
-            <tree string="Pet Sub Type">
+            <tree>
                 <field name='pet_type_id' />
                 <field name='name' />
             </tree>

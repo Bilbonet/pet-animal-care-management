@@ -10,7 +10,6 @@
         <field name="priority">2</field>
         <field name="arch" type="xml">
             <tree
-                string="Vet Appointment"
                 decoration-muted="active==False"
                 decoration-bf="date_appointment == False and state == 'draft'"
                 decoration-danger="date_appointment and (date_appointment&lt;current_date) and state == 'draft'"

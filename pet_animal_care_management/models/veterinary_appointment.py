@@ -20,7 +20,7 @@ class VeterinaryAppointment(models.Model):
         if self.animal_id and not self.partner_id:
             return self.animal_id.partner_id
 
-    name = fields.Char(string="Name", required=True, default="/", readonly=True)
+    name = fields.Char(required=True, default="/", readonly=True)
     active = fields.Boolean(
         default=True,
         copy=False,
@@ -71,13 +71,9 @@ class VeterinaryAppointment(models.Model):
     history = fields.Text(
         string="Clinic History", readonly=True, states={"draft": [("readonly", False)]}
     )
-    diagnostic = fields.Text(
-        string="Diagnostic", readonly=True, states={"draft": [("readonly", False)]}
-    )
-    treatment = fields.Text(
-        string="Treatment", readonly=True, states={"draft": [("readonly", False)]}
-    )
-    animal_weight = fields.Float(string="Animal Weight")
+    diagnostic = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    treatment = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    animal_weight = fields.Float()
     privacy_visibility = fields.Selection(
         [
             ("followers", "Veterinarian and followers"),

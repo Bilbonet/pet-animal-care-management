@@ -3,11 +3,16 @@
 
 {
     "name": "Pet Animal Care Management",
-    "version": "14.0.1.1.0",
-    "category": "Sales",
-    "license": "AGPL-3",
-    "author": "Jesus Ramiro (Bilbonet.NET)",
+    "summary": "This module is the base for managing and caring for pets in Odoo.",
+    "version": "16.0.1.0.0",
+    "development_status": "Alpha",
+    "category": "Management",
     "website": "https://github.com/Bilbonet/pet-animal-care-management",
+    "author": "Jesus Ramiro (Bilbonet)",
+    "maintainers": ["bilbonet"],
+    "license": "AGPL-3",
+    "application": True,
+    "installable": True,
     "depends": [
         "base",
         "mail",
@@ -25,7 +30,4 @@
         "report/vet_appointment_report.xml",
         "data/vet_appointment_mail_template.xml",
     ],
-    "installable": True,
-    "application": True,
-    "auto_install": False,
 }
