@@ -16,7 +16,7 @@ class PetAnimal(models.Model):
         for pet in self:
             pet.vet_apmt_count = len(pet.vet_appointment_ids)
 
-    name = fields.Char(string="Name", index=True, copy=False, help="Pet's name")
+    name = fields.Char(index=True, copy=False, help="Pet's name")
     complete_name = fields.Char(
         string="Full Name", compute="_compute_complete_name", store=True
     )
@@ -28,7 +28,6 @@ class PetAnimal(models.Model):
         "With dogs usually be the chip code.",
     )
     passport = fields.Char(
-        string="Passport",
         copy=False,
         index=True,
         help="A pet passport is a document that officially records information "
@@ -39,13 +38,12 @@ class PetAnimal(models.Model):
         help="If the active field is set to False, it will allow you to hide"
         " the pet animal without removing it.",
     )
-    pet_birth_date = fields.Date(string="Date Of Birth")
+    pet_birth_date = fields.Date()
     sex = fields.Selection(
-        [("male", "Male"), ("female", "Female"), ("unknow", "Unknow")],
-        string="Sex",
+        selection=[("male", "Male"), ("female", "Female"), ("unknow", "Unknow")],
         copy=False,
     )
-    sterilized = fields.Boolean(string="Sterilized")
+    sterilized = fields.Boolean()
     pet_type_id = fields.Many2one("pet.animal.type", string="Type")
     pet_sub_type_id = fields.Many2one("pet.animal.sub_type", string="Sub Type")
     veterinarian_id = fields.Many2one(
@@ -58,7 +56,7 @@ class PetAnimal(models.Model):
         default=lambda self: self.env["res.company"]._company_default_get(),
     )
     privacy_visibility = fields.Selection(
-        [
+        selection=[
             ("followers", "Veterinarian and followers"),
             ("employees", "Visible by all employees"),
         ],
@@ -100,12 +98,14 @@ class PetAnimal(models.Model):
             self.complete_name = self.name
 
     @api.model
-    def create(self, vals):
-        if not vals.get("pet_code", False):
-            vals["pet_code"] = self.env["ir.sequence"].sudo().next_by_code("pet.animal")
-        return super(PetAnimal, self).create(vals)
+    def create(self, vals_list):
+        if not vals_list.get("pet_code", False):
+            vals_list["pet_code"] = (
+                self.env["ir.sequence"].sudo().next_by_code("pet.animal")
+            )
+        return super(PetAnimal, self).create(vals_list)
 
     def write(self, vals):
-        if vals.get("pet_code", "/") == False:
+        if not vals.get("pet_code", "/"):
             raise ValidationError(_("You cannot leave blank Pet Animal Code."))
         return super(PetAnimal, self).write(vals)

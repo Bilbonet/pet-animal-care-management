@@ -8,7 +8,7 @@ class PetAimalType(models.Model):
     _name = "pet.animal.type"
     _description = "Pet Animal Type"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
     _sql_constraints = [
         (
@@ -23,7 +23,7 @@ class PetAnimalSubType(models.Model):
     _name = "pet.animal.sub_type"
     _description = "Pet Animal Sub Type"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     pet_type_id = fields.Many2one(
         string="Pet Type", comodel_name="pet.animal.type", required=True
     )
