@@ -53,7 +53,7 @@ class PetAnimal(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self.env.company.id,
     )
     privacy_visibility = fields.Selection(
         selection=[
@@ -97,12 +97,13 @@ class PetAnimal(models.Model):
         else:
             self.complete_name = self.name
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals_list):
-        if not vals_list.get("pet_code", False):
-            vals_list["pet_code"] = (
-                self.env["ir.sequence"].sudo().next_by_code("pet.animal")
-            )
+        for vals in vals_list:
+            if not vals.get("pet_code", False):
+                vals["pet_code"] = (
+                    self.env["ir.sequence"].sudo().next_by_code("pet.animal")
+                )
         return super(PetAnimal, self).create(vals_list)
 
     def write(self, vals):

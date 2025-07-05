@@ -20,7 +20,12 @@ class VeterinaryAppointment(models.Model):
         if self.animal_id and not self.partner_id:
             return self.animal_id.partner_id
 
-    name = fields.Char(required=True, default="/", readonly=True)
+    name = fields.Char(
+        required=True,
+        default="/",
+        readonly=True,
+        copy=False,
+    )
     active = fields.Boolean(
         default=True,
         copy=False,
@@ -30,10 +35,10 @@ class VeterinaryAppointment(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        default=lambda self: self.env["res.company"]._company_default_get(),
+        default=lambda self: self.env.company.id,
     )
     state = fields.Selection(
-        [("draft", "Pending"), ("done", "Done"), ("cancel", "Cancel")],
+        selection=[("draft", "Pending"), ("done", "Done"), ("cancel", "Cancel")],
         string="Status",
         required=True,
         index=True,
@@ -69,13 +74,21 @@ class VeterinaryAppointment(models.Model):
         copy=False,
     )
     history = fields.Text(
-        string="Clinic History", readonly=True, states={"draft": [("readonly", False)]}
+        string="Clinic History",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
-    diagnostic = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
-    treatment = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    diagnostic = fields.Text(
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+    treatment = fields.Text(
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     animal_weight = fields.Float()
     privacy_visibility = fields.Selection(
-        [
+        selection=[
             ("followers", "Veterinarian and followers"),
             ("employees", "Visible by all employees"),
         ],
@@ -109,44 +122,35 @@ class VeterinaryAppointment(models.Model):
         if self.animal_id and not self.partner_id:
             self.partner_id = self.animal_id.partner_id
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", "/") == "/":
-            vals["name"] = (
-                self.env["ir.sequence"].next_by_code("veterinary.appointment") or "New"
-            )
-        return super(VeterinaryAppointment, self).create(vals)
-
     def action_vet_appointment_send(self):
         """
         This function opens a window to compose an email,
         with the vet appointment template message loaded by default
         """
         self.ensure_one()
-        ir_model_data = self.env["ir.model.data"]
-        try:
-            template_id = ir_model_data.get_object_reference(
-                "pet_animal_care_management", "vet_appointment_email_template"
-            )[1]
-        except ValueError:
-            template_id = False
         lang = self.env.context.get("lang")
-        template = template_id and self.env["mail.template"].browse(template_id)
-        if template.lang:
+        template = self.env.ref(
+            "pet_animal_care_management.vet_appointment_email_template",
+            raise_if_not_found=False,
+        )
+        if template and template.lang:
             lang = template._render_lang(self.ids)[self.id]
-        ctx = {
-            "default_model": "veterinary.appointment",
-            "default_res_id": self.ids[0],
-            "default_use_template": bool(template_id),
-            "default_template_id": template_id,
-            "default_composition_mode": "comment",
-            "model_description": self.with_context(lang=lang).name,
-            "force_email": True,
-        }
-        return {
+        layout_xmlid = "mail.mail_notification_layout_with_responsible_signature"
+        ctx = dict(
+            default_model="veterinary.appointment",
+            default_res_id=self.ids[0],
+            default_use_template=bool(template),
+            default_template_id=template.id if template else None,
+            default_composition_mode="comment",
+            default_email_layout_xmlid=layout_xmlid,
+            model_description=self.with_context(lang=lang).name,
+            force_email=True,
+        )
+
+        report_action = {
+            "name": _("Send Vet Appointmen Report"),
             "type": "ir.actions.act_window",
             "view_type": "form",
-            "view_mode": "form",
             "res_model": "mail.compose.message",
             "views": [(False, "form")],
             "view_id": False,
@@ -154,38 +158,41 @@ class VeterinaryAppointment(models.Model):
             "context": ctx,
         }
 
+        return report_action
+
     def send_vet_appointment_reminder(self):
         self.ensure_one()
-        ir_model_data = self.env["ir.model.data"]
-        try:
-            template_id = ir_model_data.get_object_reference(
-                "pet_animal_care_management", "vet_appointment_email_reminder"
-            )[1]
-        except ValueError:
-            template_id = False
         lang = self.env.context.get("lang")
-        template = template_id and self.env["mail.template"].browse(template_id)
-        if template.lang:
+        template = self.env.ref(
+            "pet_animal_care_management.vet_appointment_email_reminder",
+            raise_if_not_found=False,
+        )
+        if template and template.lang:
             lang = template._render_lang(self.ids)[self.id]
-        ctx = {
-            "default_model": "veterinary.appointment",
-            "default_res_id": self.ids[0],
-            "default_use_template": bool(template_id),
-            "default_template_id": template_id,
-            "default_composition_mode": "comment",
-            "model_description": self.with_context(lang=lang).name,
-            "force_email": True,
-        }
-        return {
+        layout_xmlid = "mail.mail_notification_layout_with_responsible_signature"
+        ctx = dict(
+            default_model="veterinary.appointment",
+            default_res_id=self.ids[0],
+            default_use_template=bool(template),
+            default_template_id=template.id if template else None,
+            default_composition_mode="comment",
+            default_email_layout_xmlid=layout_xmlid,
+            model_description=self.with_context(lang=lang).name,
+            force_email=True,
+        )
+
+        report_action = {
+            "name": _("Send Vet Appointmen Reminder"),
             "type": "ir.actions.act_window",
             "view_type": "form",
-            "view_mode": "form",
             "res_model": "mail.compose.message",
             "views": [(False, "form")],
             "view_id": False,
             "target": "new",
             "context": ctx,
         }
+
+        return report_action
 
     def view_vet_appointment(self):
         self.ensure_one()
@@ -196,3 +203,13 @@ class VeterinaryAppointment(models.Model):
             "view_type": "form",
             "view_mode": "form",
         }
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", "/") == "/":
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code("veterinary.appointment")
+                    or "New"
+                )
+        return super(VeterinaryAppointment, self).create(vals_list)
