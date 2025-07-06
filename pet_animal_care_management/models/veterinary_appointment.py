@@ -148,7 +148,7 @@ class VeterinaryAppointment(models.Model):
         )
 
         report_action = {
-            "name": _("Send Vet Appointmen Report"),
+            "name": _("Send Vet Appointment Report"),
             "type": "ir.actions.act_window",
             "view_type": "form",
             "res_model": "mail.compose.message",
@@ -182,7 +182,7 @@ class VeterinaryAppointment(models.Model):
         )
 
         report_action = {
-            "name": _("Send Vet Appointmen Reminder"),
+            "name": _("Send Vet Appointment Reminder"),
             "type": "ir.actions.act_window",
             "view_type": "form",
             "res_model": "mail.compose.message",

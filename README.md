@@ -7,7 +7,7 @@
 
 <!-- /!\ do not modify above this line -->
 
-# Averything to manage animal care
+# Everything to manage animal care
 
 This modules have everything which require to manage animal care
 

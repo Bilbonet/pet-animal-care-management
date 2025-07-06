@@ -40,7 +40,7 @@ class PetAnimal(models.Model):
     )
     pet_birth_date = fields.Date()
     sex = fields.Selection(
-        selection=[("male", "Male"), ("female", "Female"), ("unknow", "Unknow")],
+        selection=[("male", "Male"), ("female", "Female"), ("unknown", "Unknown")],
         copy=False,
     )
     sterilized = fields.Boolean()
@@ -91,11 +91,11 @@ class PetAnimal(models.Model):
 
     @api.depends("name", "partner_id")
     def _compute_complete_name(self):
-        """Forms complete name of location from parent location to child location."""
-        if self.partner_id.name:
-            self.complete_name = "%s (%s)" % (self.name, self.partner_id.name)
-        else:
-            self.complete_name = self.name
+        for pet in self:
+            if pet.partner_id:
+                pet.complete_name = f"{pet.name} ({pet.partner_id.name})"
+            else:
+                pet.complete_name = pet.name
 
     @api.model_create_multi
     def create(self, vals_list):
